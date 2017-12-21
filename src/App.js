@@ -10,7 +10,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pun: 'pun'
+            pun: 'pun',
+            answer: 'answer'
         }
 
         this.update = this.update.bind(this);
@@ -18,15 +19,16 @@ class App extends React.Component {
 
     update() {
         this.setState({
-            pun: 'butts'
+            pun: 'butts',
+            answer: 'funny'
         })
     }
 
     render() {
         return (
             <div className='app'>
-                <Pun text={ this.state.pun }/>
-                <Answer text='answer'/>
+                <Pun text={ this.state.pun } />
+                <Answer text={ this.state.answer } />
                 <Button text='Click Me!' onClick={ this.update } />
             </div>
         )

@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry: {
         app: "./src/index.js",
-        commons: ["react", "react-dom"]
+        common: ["react", "react-dom", "firebase"]
     },
     output: {
         path: path.resolve(__dirname, "./dist/"),
@@ -83,8 +83,8 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            filename: "static/scripts/commons.js",
+            name: "common",
+            filename: "static/scripts/common.js",
             minChunks: Infinity,
         }),
         new ExtractTextPlugin({
@@ -99,7 +99,7 @@ module.exports = {
             proxy: "http://localhost:5000/"
         }),
         new HtmlWebpackPlugin({
-            chunks: ["commons", "app"],
+            chunks: ["common", "app"],
             filename: "index.html",
             template: "./src/index.html",
             title: ""
