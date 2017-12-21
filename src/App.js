@@ -6,32 +6,27 @@ import React from 'react';
 import { render } from 'react-dom';
 import * as firebase from 'firebase';
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            pun: ""
-        }
-    }
-
-    componentDidMount() {
-        const rootRef = firebase.database().ref().child('puns');
-        // const punRef = rootRef.child('pun');
-
-        rootRef.on('value', (snap) => {
-            this.setState({
-                // pun: snap.val()['pun 1']
-            })
-        })
-    }
-
-    render() {
-        return (
-            <div className='app'>
-                <h1 className='pun-title'>{ this.state.pun }</h1>
-            </div>
-        );
-    }
+const App = ({ }) => {
+    return (
+        <div className='app'>
+            <Pun text='pun'/>
+            <Answer text='answer'/>
+            <Button text='Click Me!'/>
+        </div>
+    )
 }
+
+const Pun = ({ text }) => <h1 className='pun'>{ text }</h1>
+const Answer = ({ text }) => <p className='answer'>{ text }</p>
+const Button = ({ text }) => {
+    const onClick = () => {
+        console.log(1);
+    }
+
+    return (
+        <button className='button' onclick={ onClick }>{ text }</button>
+    )
+}
+
 
 export default App
