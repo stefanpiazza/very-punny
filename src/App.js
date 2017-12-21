@@ -6,27 +6,46 @@ import React from 'react';
 import { render } from 'react-dom';
 import * as firebase from 'firebase';
 
-const App = ({ }) => {
-    return (
-        <div className='app'>
-            <Pun text='pun'/>
-            <Answer text='answer'/>
-            <Button text='Click Me!'/>
-        </div>
-    )
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pun: 'pun'
+        }
+
+        this.update = this.update.bind(this);
+    }
+
+    update() {
+        this.setState({
+            pun: 'butts'
+        })
+    }
+
+    render() {
+        return (
+            <div className='app'>
+                <Pun text={ this.state.pun }/>
+                <Answer text='answer'/>
+                <Button text='Click Me!' onClick={ this.update } />
+            </div>
+        )
+    }
 }
 
 const Pun = ({ text }) => <h1 className='pun'>{ text }</h1>
 const Answer = ({ text }) => <p className='answer'>{ text }</p>
-const Button = ({ text }) => {
-    const onClick = () => {
-        console.log(1);
+
+class Button extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    return (
-        <button className='button' onclick={ onClick }>{ text }</button>
-    )
+    render() {
+        return (
+            <button className='button' onClick={ this.props.onClick }>{ this.props.text }</button>
+        )
+    }
 }
-
 
 export default App
