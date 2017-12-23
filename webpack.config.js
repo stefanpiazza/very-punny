@@ -102,7 +102,7 @@ module.exports = {
             chunks: ["common", "app"],
             filename: "index.html",
             template: "./src/index.html",
-            title: ""
+            title: "Very Punny"
         }),
     ]
 }
