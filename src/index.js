@@ -4,6 +4,8 @@ var styles = require('./index.scss');
 
 import React from 'react';
 import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
 import * as firebase from 'firebase';
 
 var config = {

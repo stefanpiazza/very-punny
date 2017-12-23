@@ -4,6 +4,8 @@ var styles = require('./App.scss');
 
 import React from 'react';
 import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
 import * as firebase from 'firebase';
 
 class App extends React.Component {
@@ -15,6 +17,10 @@ class App extends React.Component {
         }
 
         this.update = this.update.bind(this);
+    }
+
+    componentWillMount() {
+
     }
 
     update() {
@@ -49,5 +55,10 @@ class Button extends React.Component {
         )
     }
 }
+
+Button.propTypes = {
+    onClick: PropTypes.func,
+    text: PropTypes.string
+};
 
 export default App
