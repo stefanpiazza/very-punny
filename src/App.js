@@ -8,12 +8,28 @@ import PropTypes from 'prop-types';
 
 import * as firebase from 'firebase';
 
+const punList = [
+    {
+        pun: 'butts',
+        answer: 'more butts'
+    },
+    {
+        pun: 'butts1',
+        answer: 'more butts1'
+    },
+    {
+        pun: 'butts2',
+        answer: 'more butts2'
+    }
+]
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pun: 'pun',
-            answer: 'answer'
+            currentIndex: 0,
+            pun: punList[0]['pun'],
+            answer: punList[0]['answer']
         }
 
         this.update = this.update.bind(this);
@@ -24,9 +40,14 @@ class App extends React.Component {
     }
 
     update() {
+        let filteredPunList = punList.filter(pun => punList.indexOf(pun) !== this.state.currentIndex);
+        let punIndex = Math.floor(Math.random() * filteredPunList.length);
+        let pun = filteredPunList[punIndex];
+        
+        this.setState({ currentIndex: punList.indexOf(pun) })
         this.setState({
-            pun: 'butts',
-            answer: 'funny'
+            pun: pun['pun'],
+            answer: pun['answer']
         })
     }
 
