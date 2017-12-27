@@ -8,28 +8,17 @@ import PropTypes from 'prop-types';
 
 import * as firebase from 'firebase';
 
-const punList = [
-    {
-        pun: 'butts',
-        answer: 'more butts'
-    },
-    {
-        pun: 'butts1',
-        answer: 'more butts1'
-    },
-    {
-        pun: 'butts2',
-        answer: 'more butts2'
-    }
-]
+import Button from './components/Button/Button';
+import Pun from './components/Pun/Pun';
+
+const data = require('./data.json');
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             currentIndex: 0,
-            pun: punList[0]['pun'],
-            answer: punList[0]['answer']
+            pun: data[0]
         }
 
         this.update = this.update.bind(this);
@@ -40,46 +29,26 @@ class App extends React.Component {
     }
 
     update() {
-        let filteredPunList = punList.filter(pun => punList.indexOf(pun) !== this.state.currentIndex);
-        let punIndex = Math.floor(Math.random() * filteredPunList.length);
-        let pun = filteredPunList[punIndex];
-        
-        this.setState({ currentIndex: punList.indexOf(pun) })
+        let filteredData = data.filter(item => data.indexOf(item) !== this.state.currentIndex);
+        let dataIndex = Math.floor(Math.random() * filteredData.length);
+        let item = filteredData[dataIndex];
+
         this.setState({
-            pun: pun['pun'],
-            answer: pun['answer']
+            currentIndex: data.indexOf(item),
+            pun: item
         })
     }
 
     render() {
         return (
             <div className='app'>
-                <Pun text={ this.state.pun } />
-                <Answer text={ this.state.answer } />
-                <Button text='Click Me!' onClick={ this.update } />
+                <div className='container'>
+                    <Pun joke={ this.state.pun.joke } punchLine={ this.state.pun.punchLine } />
+                    <Button text='Another Pun' onClick={ this.update } />
+                </div>
             </div>
         )
     }
 }
-
-const Pun = ({ text }) => <h1 className='pun'>{ text }</h1>
-const Answer = ({ text }) => <p className='answer'>{ text }</p>
-
-class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <button className='button' onClick={ this.props.onClick }>{ this.props.text }</button>
-        )
-    }
-}
-
-Button.propTypes = {
-    onClick: PropTypes.func,
-    text: PropTypes.string
-};
 
 export default App
