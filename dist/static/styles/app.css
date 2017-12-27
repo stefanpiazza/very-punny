@@ -1,2 +1,50 @@
-*{box-sizing:border-box;margin:0;padding:0}
+.button {
+  background-color: #fff;
+  border: 1px solid #222;
+  color: #222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  padding: 10px 40px; }
+.pun {
+  font-family: sans-serif;
+  text-align: left; }
+
+.joke {
+  color: #222;
+  display: block;
+  font-size: 25px;
+  line-height: 30px;
+  margin-bottom: 20px; }
+
+.punch-line {
+  background-color: #222;
+  color: #fff;
+  display: inline-block;
+  font-size: 25px;
+  line-height: 30px;
+  padding: 5px; }
+.container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 40px 20px; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
 /*# sourceMappingURL=app.css.map*/
