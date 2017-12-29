@@ -3,6 +3,7 @@
 var styles = require('./Pun.scss');
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // class Pun extends React.Component {
 //     constructor(props) {
@@ -30,5 +31,10 @@ const Pun = ({ joke, punchLine }) => {
 
 const Joke = ({ text }) => <p className='joke'>{ text }</p>
 const PunchLine = ({ text }) => <p className='punch-line'>{ text }</p>
+
+Pun.propTypes = {
+    joke: PropTypes.string,
+    punchLine: PropTypes.string
+};
 
 export default Pun
