@@ -5,7 +5,13 @@
     cursor: pointer;
     display: inline-block;
     font-family: sans-serif;
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20px;
     padding: 10px 40px;
+
+    &:hover {
+        background-color: #222;
+        color: #fff;
+    }
 }
