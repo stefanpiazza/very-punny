@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -104,5 +105,12 @@ module.exports = {
             template: "./src/index.html",
             title: "Very Punny"
         }),
+        new WorkboxPlugin({
+            globDirectory: 'dist',
+            globPatterns: ['**/*.{html,js,css}'],
+            swDest: path.join('dist', 'sw.js'),
+            clientsClaim: true,
+            skipWaiting: true,
+          })
     ]
 }
