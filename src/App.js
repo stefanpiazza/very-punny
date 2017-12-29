@@ -18,8 +18,8 @@ class App extends React.Component {
             data: [],
             currentIndex: 0,
             pun: {
-                joke: "Preparing jokes",
-                punchLine: "Get ready to groan."
+                joke: "",
+                punchLine: "Loading..."
             }
         }
 
