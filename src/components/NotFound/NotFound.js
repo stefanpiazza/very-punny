@@ -3,7 +3,6 @@
 var styles = require('./NotFound.scss');
 
 import React from 'react';
-import { render } from 'react-dom';
 
 class NotFound extends React.Component {
     render() {
