@@ -19,7 +19,8 @@ class Home extends React.Component {
             pun: {
                 joke: "",
                 punchLine: "Loading..."
-            }
+            },
+            isLoading: true
         }
 
         this.update = this.update.bind(this);
@@ -31,8 +32,9 @@ class Home extends React.Component {
         const punsRef = dbRef.child('puns');
         punsRef.once('value', snap => {
             this.setState({
-                data: snap.val(),
                 currentIndex: 0,
+                data: snap.val(),
+                isLoading: false,
                 pun: snap.val()[0]
             })
         });
@@ -50,10 +52,15 @@ class Home extends React.Component {
     }
 
     render() {
+        let button = null;
+        if (!this.state.isLoading) {
+            button = <Button text='Tell Me Another' onClick={ this.update } />
+        }
+
         return (
             <div className='home'>
                 <Pun joke={ this.state.pun.joke } punchLine={ this.state.pun.punchLine } />
-                <Button text='Tell Me Another' onClick={ this.update } />
+                { button }
             </div>
         );
     }
