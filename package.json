@@ -40,6 +40,7 @@
     "favicons-webpack-plugin": "^0.0.7",
     "firebase": "^4.8.1",
     "react-router-dom": "^4.2.2",
+    "uglifyjs-webpack-plugin": "^1.1.5",
     "workbox-sw": "^2.1.2",
     "workbox-webpack-plugin": "^2.1.2"
   }
