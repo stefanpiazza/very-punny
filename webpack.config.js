@@ -5,6 +5,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -111,6 +113,16 @@ module.exports = {
             swDest: path.join('dist', 'sw.js'),
             clientsClaim: true,
             skipWaiting: true,
-          })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: "./src/manifest.json",
+                to: "manifest.json"
+            }
+        ]),
+        new FaviconsWebpackPlugin({
+            logo: "./src/favicon.png",
+            prefix: "static/images/favicons/"
+        })
     ]
 }
