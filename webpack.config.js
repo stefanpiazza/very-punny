@@ -125,7 +125,7 @@ module.exports = {
             prefix: "static/images/favicons/"
         }),
         new CompressionPlugin({
-            test: /\.(js|html)$/,
+            test: /\.(js|html|css)$/,
         })
     ]
 }
