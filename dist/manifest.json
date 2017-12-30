@@ -5,7 +5,7 @@
     "lang": "en-UK",
     "display": "standalone",
     "orientation": "portrait",
-    "start_url": "/?launcher=true",
+    "start_url": "/?utm_source=homescreen",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
     "icons": [
