@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 
 import * as firebase from 'firebase';
 
+import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 import Pun from '../Pun/Pun';
 
@@ -18,7 +19,7 @@ class Home extends React.Component {
             currentIndex: 0,
             pun: {
                 joke: "",
-                punchLine: "Loading..."
+                punchLine: ""
             },
             isLoading: true
         }
@@ -52,14 +53,24 @@ class Home extends React.Component {
     }
 
     render() {
+        let loading = null;
         let button = null;
+        let pun = null;
+
         if (!this.state.isLoading) {
             button = <Button text='Tell Me Another' onClick={ this.update } />
+            pun = <Pun joke={ this.state.pun.joke } punchLine={ this.state.pun.punchLine } />
+            loading = null;
+        }
+
+        else {
+            loading = <Loading text='Loading...' />
         }
 
         return (
             <div className='home'>
-                <Pun joke={ this.state.pun.joke } punchLine={ this.state.pun.punchLine } />
+                { loading }
+                { pun }
                 { button }
             </div>
         );

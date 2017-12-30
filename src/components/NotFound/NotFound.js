@@ -4,12 +4,12 @@ var styles = require('./NotFound.scss');
 
 import React from 'react';
 
-class NotFound extends React.Component {
-    render() {
-        return (
-            <h1>Route not found.</h1>
-        )
-    }
+const NotFound = ({ }) => {
+    return (
+        <div className='not-found'>
+            <p className='error'>No puns here.</p>
+        </div>
+    )
 }
 
 export default NotFound
