@@ -36,8 +36,8 @@ class PunList extends React.Component {
         let punList = null;
 
         if (!this.state.isLoading) {
-            punList = this.state.data.map((pun) =>
-                <li className='pun-list__item'>
+            punList = this.state.data.map((pun, index) =>
+                <li className='pun-list__item' key={ index } >
                     <Pun joke={ pun.joke } punchLine={ pun.punchLine } />
                 </li>
             );
