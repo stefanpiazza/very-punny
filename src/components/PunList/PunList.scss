@@ -1,0 +1,9 @@
+.pun-list {
+    list-style: none;
+}
+
+.pun-list__item {
+    & + .pun-list__item {
+        margin-top: 40px;
+    }
+}
