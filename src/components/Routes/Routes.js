@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from '../Home/Home';
+import PunList from '../PunList/PunList';
 import NotFound from '../NotFound/NotFound';
 
 class Routes extends React.Component {
@@ -15,6 +16,7 @@ class Routes extends React.Component {
         return (
             <Switch>
                 <Route exact path='/' component={ Home } />
+                <Route exact path='/all' component={ PunList } />
                 <Route component={ NotFound } />
             </Switch>
         );
