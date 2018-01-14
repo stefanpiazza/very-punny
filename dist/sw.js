@@ -44,7 +44,7 @@ const fileManifest = [
   },
   {
     "url": "/static/styles/app.css",
-    "revision": "a231d4d585342b075ce7230d2d3b9af8"
+    "revision": "959f7976872ef9848afdf6680909e6bc"
   }
 ];
 
