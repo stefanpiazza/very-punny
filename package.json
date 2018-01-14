@@ -5,7 +5,10 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack",
+        "build-prod": "webpack -p",
         "dev": "concurrently --kill-others \"npm run watch\" \"npm run server\"",
+        "deploy": "firebase deploy",
+        "launch": "concurrently --kill-others \"npm run build-prod\" \"npm run deploy\"",
         "server": "firebase serve",
         "watch": "webpack -w"
     },
