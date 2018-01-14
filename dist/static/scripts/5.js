@@ -1,6 +1,6 @@
-webpackJsonp([3],{
+webpackJsonp([5],{
 
-/***/ 226:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18,15 +18,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(2);
 
-var _firebase = __webpack_require__(36);
+var _firebase = __webpack_require__(23);
 
 var firebase = _interopRequireWildcard(_firebase);
 
-var _Loading = __webpack_require__(227);
+var _Loading = __webpack_require__(107);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Pun = __webpack_require__(228);
+var _Pun = __webpack_require__(108);
 
 var _Pun2 = _interopRequireDefault(_Pun);
 
@@ -40,7 +40,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var styles = __webpack_require__(235);
+var styles = __webpack_require__(236);
 
 var PunList = function (_React$Component) {
     _inherits(PunList, _React$Component);
@@ -108,114 +108,7 @@ exports.default = PunList;
 
 /***/ }),
 
-/***/ 227:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var styles = __webpack_require__(229);
-
-var Loading = function Loading(_ref) {
-  var text = _ref.text;
-  return _react2.default.createElement(
-    'p',
-    { className: 'loading' },
-    text
-  );
-};
-
-exports.default = Loading;
-
-/***/ }),
-
-/***/ 228:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(5);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var styles = __webpack_require__(230);
-
-var Pun = function Pun(_ref) {
-    var joke = _ref.joke,
-        punchLine = _ref.punchLine;
-
-    return _react2.default.createElement(
-        'div',
-        { className: 'pun' },
-        _react2.default.createElement(Joke, { text: joke }),
-        _react2.default.createElement(PunchLine, { text: punchLine })
-    );
-};
-
-var Joke = function Joke(_ref2) {
-    var text = _ref2.text;
-    return _react2.default.createElement(
-        'p',
-        { className: 'joke' },
-        text
-    );
-};
-var PunchLine = function PunchLine(_ref3) {
-    var text = _ref3.text;
-    return _react2.default.createElement(
-        'p',
-        { className: 'punch-line' },
-        text
-    );
-};
-
-Pun.propTypes = {
-    joke: _propTypes2.default.string,
-    punchLine: _propTypes2.default.string
-};
-
-exports.default = Pun;
-
-/***/ }),
-
-/***/ 229:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"loading":"loading"};
-
-/***/ }),
-
-/***/ 230:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"pun":"pun","joke":"joke","punch-line":"punch-line","punchLine":"punch-line"};
-
-/***/ }),
-
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -224,4 +117,4 @@ module.exports = {"pun-list":"pun-list","punList":"pun-list","pun-list__item":"p
 /***/ })
 
 });
-//# sourceMappingURL=3.js.map
+//# sourceMappingURL=5.js.map
