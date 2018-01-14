@@ -10,8 +10,19 @@
     line-height: 20px;
     padding: 10px 40px;
 
-    &:hover {
+    &:active {
         background-color: #222;
         color: #fff;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    @media (min-width: 1024px) {
+        &:hover {
+            background-color: #222;
+            color: #fff;
+        }
     }
 }
