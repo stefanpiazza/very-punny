@@ -31,17 +31,28 @@ class PunList extends React.Component {
         });
     }
 
+    renderPunList() {
+        return (
+            <ul className='pun-list'>
+                { this.renderPunListItems() }
+            </ul>
+        )
+    }
+
+    renderPunListItems() {
+        return this.state.data.map((pun, index) =>
+            <li className='pun-list__item' key={ index } >
+                <Pun joke={ pun.joke } punchLine={ pun.punchLine } />
+            </li>
+        );
+    }
+
     render() {
         let loading = null;
         let punList = null;
 
         if (!this.state.isLoading) {
-            punList = this.state.data.map((pun, index) =>
-                <li className='pun-list__item' key={ index } >
-                    <Pun joke={ pun.joke } punchLine={ pun.punchLine } />
-                </li>
-            );
-
+            punList = this.renderPunList();
             loading = null;
         }
 
@@ -50,10 +61,10 @@ class PunList extends React.Component {
         }
 
         return (
-            <ul className='pun-list'>
+            <div className='all'>
                 { loading }
                 { punList }
-            </ul>
+            </div>
         );
     }
 }
