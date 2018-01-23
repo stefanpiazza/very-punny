@@ -8,6 +8,10 @@ import { render } from 'react-dom';
 import * as firebase from 'firebase';
 
 import Button from '../Button/Button';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { userLogIn, userLogOut } from '../../actions';
 
 class Admin extends React.Component {
     constructor(props) {
@@ -18,15 +22,27 @@ class Admin extends React.Component {
             password: null
         }
 
-        this.logIn = this.logIn.bind(this);
-        this.logOut = this.logOut.bind(this);
+        this.handleLogIn = this.handleLogIn.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this);
     }
 
     componentWillMount() {
 
     }
 
-    logIn() {
+    renderLogIn() {
+        let emailClass = (this.state.email === false ? 'input input--error' : 'input');
+        let passwordClass = (this.state.password === false ? 'input input--error' : 'input');
+
+        return (
+            <div className='form'>
+                <input type='email' placeholder='Enter email' className={ emailClass } id='email'></input>
+                <input type='password' placeholder='Enter password' className={ passwordClass } id='password'></input>
+            </div>
+        )
+    }
+
+    handleLogIn() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
@@ -53,14 +69,14 @@ class Admin extends React.Component {
             .catch(() => {
                 document.getElementById('email').value = '';
                 document.getElementById('password').value = '';
-                
+
                 this.setState({
                     isLoggedIn: false
                 });
             })
     }
 
-    logOut() {
+    handleLogOut() {
         const auth = firebase.auth();
         auth.signOut()
             .then(() => {
@@ -75,17 +91,13 @@ class Admin extends React.Component {
         let button = null;
 
         if (!this.state.isLoggedIn) {
-            adminLogin = <AdminLogin
-                email={ this.state.email }
-                password={ this.state.password }
-                onClick={ this.logIn }
-            />
-        button = <Button text='Log in' onClick={ this.logIn } />
+            adminLogin = this.renderLogIn();
+            button = <Button text='Log in' onClick={ this.handleLogIn } />
         }
 
         else {
             adminLogin = null;
-            button = <Button text='Log Out' onClick={ this.logOut } />
+            button = <Button text='Log Out' onClick={ this.handleLogOut } />
         }
 
         return (
@@ -97,16 +109,17 @@ class Admin extends React.Component {
     }
 }
 
-const AdminLogin = ({email, password, onClick}) => {
-    let emailClass = (email === false ? 'input input--error' : 'input');
-    let passwordClass = (password === false ? 'input input--error' : 'input');
-
-    return (
-        <div className='form'>
-            <input type='email' placeholder='Enter email' className={ emailClass } id='email'></input>
-            <input type='password' placeholder='Enter password' className={ passwordClass } id='password'></input>
-        </div>
-    )
+function mapStatesToProps(state) {
+    return {
+        user: state.user
+    }
 }
 
-export default Admin
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({
+        userLogIn: userLogIn,
+        userLogOut: userLogOut
+    }, dispatch);
+}
+
+export default connect(mapStatesToProps, matchDispatchToProps)(Admin);
