@@ -24,43 +24,31 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/0.js",
-    "revision": "74d6f8fec0a56cd7bd3f6b12cf04a82c"
+    "revision": "1efabe0c691759ec33db902e30a19a94"
   },
   {
     "url": "static/scripts/1.js",
-    "revision": "274a0407f3706ee5f84ec35f1725597b"
+    "revision": "81b94b4fa881bc5fe21eb1bb5bf8fdb8"
   },
   {
     "url": "static/scripts/2.js",
-    "revision": "1f4c0157a1dcaa4753e0cba40c8fcbf7"
+    "revision": "ae84355b715171c57b5ac83bd484be58"
   },
   {
     "url": "static/scripts/3.js",
-    "revision": "8ba0353a576ede58193afabf39ba517d"
-  },
-  {
-    "url": "static/scripts/4.js",
-    "revision": "97d7ca66b323b488f9313ef3395b3cfd"
-  },
-  {
-    "url": "static/scripts/5.js",
-    "revision": "98f5a0d7463f30fdfc4b13d71bb8da42"
-  },
-  {
-    "url": "static/scripts/6.js",
-    "revision": "f8e10c0d567f4a760ac0aeb8d25221fd"
+    "revision": "ca01cbd4cd34e7b1c60835f1e98aff85"
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "ef60862b5f76597bdf9e5477fd1b6f70"
+    "revision": "d62991b754396e65cfe6d116ab8a5391"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "dee55a69fc4fd2d6bf291863d9fa90d1"
+    "revision": "12ee739a2c80be5a7212a531eb85f602"
   },
   {
     "url": "/static/styles/app.css",
-    "revision": "5108cd09a6e7d854f6a8f69565d0b28f"
+    "revision": "be8dfbf03ec8024ca28555c00bed10e8"
   }
 ];
 
