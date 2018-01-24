@@ -20,12 +20,6 @@ module.exports = {
         publicPath: '/'
     },
     devtool: 'source-map',
-    resolve: {
-        alias: {
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat'
-        }
-    },
     devServer: {
         historyApiFallback: true,
         hot: true,
@@ -79,12 +73,12 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react']
+                        presets: ['env', 'react', 'stage-0', 'react-hmre']
                     }
-                }
+                }]
             }
         ]
     },
@@ -111,6 +105,9 @@ module.exports = {
         new CompressionPlugin({
             test: /\.(js|html|css)$/,
         }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+		new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
         })
