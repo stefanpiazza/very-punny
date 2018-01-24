@@ -14,7 +14,7 @@ class Routes extends React.Component {
         return (
             <Switch>
                 <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ System.import('../Home/Home') } />} />
-                <Route path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('../PunList/PunList') } />} />
+                <Route path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('../All/All') } />} />
                 <Route path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('../Admin/Admin') } />} />
                 <Route component={ (props) => <AsyncRoute props={ props } loading={ System.import('../NotFound/NotFound') } />} />
             </Switch>
