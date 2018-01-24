@@ -21,6 +21,11 @@ class AsyncRoute extends React.Component {
         if (!this.state.loading) {
             return <this.component {...this.props.props} />
         }
+
+        // React is unhappy without a return statement
+        else {
+            return 0
+        }
     }
 }
 
