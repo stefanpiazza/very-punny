@@ -47,8 +47,10 @@ else if (process.env.NODE_ENV === 'production' ) {
 const history = createBrowserHistory();
 const store = createStore(reducers, applyMiddleware(routerMiddleware(history)));
 
-render(<Provider store={store}>
-    <ConnectedRouter history={history}>
-        <App/>
-    </ConnectedRouter>
-</Provider>, document.getElementById('root'));
+render(
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <App/>
+        </ConnectedRouter>
+    </Provider>,
+document.getElementById('root'));
