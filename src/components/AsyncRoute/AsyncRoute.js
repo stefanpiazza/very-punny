@@ -24,7 +24,7 @@ class AsyncRoute extends React.Component {
 
         // React is unhappy without a return statement
         else {
-            return 0
+            return ''
         }
     }
 }
