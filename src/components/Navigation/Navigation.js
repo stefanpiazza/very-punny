@@ -42,6 +42,7 @@ class Navigation extends React.Component {
 
     render() {
         let navClass = (this.state.isOpen ? 'nav is-open' : 'nav');
+        let toggleIcon = (this.state.isOpen ? 'Close' : 'Open');
 
         return (
             <nav className={ navClass }>
@@ -53,7 +54,7 @@ class Navigation extends React.Component {
                         <Link to='/all' className='nav__link'>All</Link>
                     </li>
                 </ul>
-                <div className='nav__toggle' onClick={ this.toggleNavigation }></div>
+                <div className='nav__toggle' onClick={ this.toggleNavigation }>{ toggleIcon }</div>
             </nav>
         )
     }
