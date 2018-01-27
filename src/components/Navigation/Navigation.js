@@ -48,10 +48,10 @@ class Navigation extends React.Component {
             <nav className={ navClass }>
                 <ul className='nav__list'>
                     <li className='nav__list-item'>
-                        <Link to='/' className='nav__link'>Home</Link>
+                        <Link to='/' className='nav__link' onClick={ this.closeNavigation }>Home</Link>
                     </li>
                     <li className='nav__list-item'>
-                        <Link to='/all' className='nav__link'>All</Link>
+                        <Link to='/all' className='nav__link' onClick={ this.closeNavigation }>All</Link>
                     </li>
                 </ul>
                 <div className='nav__toggle' onClick={ this.toggleNavigation }>{ toggleIcon }</div>
