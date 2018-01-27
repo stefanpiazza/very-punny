@@ -6,6 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import Navigation from './components/Navigation/Navigation';
 import Routes from './components/Routes/Routes';
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div className='app'>
+                    <Navigation />
                     <div className='container'>
                         <Routes />
                     </div>
