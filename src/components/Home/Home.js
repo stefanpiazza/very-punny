@@ -33,11 +33,10 @@ class Home extends React.Component {
         const punsRef = dbRef.child('puns');
         punsRef.once('value', snap => {
             this.setState({
-                currentIndex: 0,
                 data: snap.val(),
-                isLoading: false,
-                pun: snap.val()[0]
+                isLoading: false
             })
+            this.update();
         });
     }
 
