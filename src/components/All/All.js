@@ -5,52 +5,41 @@ var styles = require('./All.scss');
 import React from 'react';
 import { render } from 'react-dom';
 
-import * as firebase from 'firebase';
-
-import Loading from '../Loading/Loading';
 import PunList from '../PunList/PunList';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { addPun, removePun } from '../../actions';
 
 class All extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: [],
-            isLoading: true
-        }
-    }
-
-    componentWillMount() {
-        const db = firebase.database();
-        const dbRef = db.ref();
-        const punsRef = dbRef.child('puns');
-        punsRef.once('value', snap => {
-            this.setState({
-                data: snap.val(),
-                isLoading: false
-            })
-        });
+        // this.state = {
+        //     data: this.props.puns
+        // }
     }
 
     render() {
-        let loading = null;
-        let punList = null;
-
-        if (!this.state.isLoading) {
-            punList = <PunList puns={ this.state.data } />
-            loading = null;
-        }
-
-        else {
-            loading = <Loading text='Loading...' />
-        }
-
         return (
             <div className='all'>
-                { loading }
-                { punList }
+                <PunList puns={ this.props.puns } />
             </div>
         );
     }
 }
 
-export default All
+function mapStatesToProps(state) {
+    return {
+        puns: state.puns
+    }
+}
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addPun: addPun,
+        removePun: removePun
+    }, dispatch);
+}
+
+export default connect(mapStatesToProps, matchDispatchToProps)(All);
