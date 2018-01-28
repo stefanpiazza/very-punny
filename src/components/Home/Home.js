@@ -5,30 +5,29 @@ var styles = require('./Home.scss');
 import React from 'react';
 import { render } from 'react-dom';
 
-import * as firebase from 'firebase';
-
-import Loading from '../Loading/Loading';
 import Button from '../Button/Button';
 import Pun from '../Pun/Pun';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            currentIndex: 0,
-            pun: {
+            data: this.props.puns,
+            currentIndex: -1,
+            currentPun: {
                 joke: "",
                 punchLine: ""
-            },
-            isLoading: true
+            }
         }
 
         this.update = this.update.bind(this);
     }
 
     componentWillMount() {
-        const db = firebase.database();
+        /**const db = firebase.database();
         const dbRef = db.ref();
         const punsRef = dbRef.child('puns');
         punsRef.once('value', snap => {
@@ -37,7 +36,9 @@ class Home extends React.Component {
                 isLoading: false
             })
             this.update();
-        });
+        });**/
+
+        this.update();
     }
 
     update() {
@@ -47,33 +48,30 @@ class Home extends React.Component {
 
         this.setState({
             currentIndex: this.state.data.indexOf(item),
-            pun: item
+            currentPun: item
         })
     }
 
     render() {
-        let loading = null;
-        let button = null;
-        let pun = null;
-
-        if (!this.state.isLoading) {
-            button = <Button text='Tell Me Another' onClick={ this.update } />
-            pun = <Pun joke={ this.state.pun.joke } punchLine={ this.state.pun.punchLine } />
-            loading = null;
-        }
-
-        else {
-            loading = <Loading text='Loading...' />
-        }
-
         return (
             <div className='home'>
-                { loading }
-                { pun }
-                { button }
+                <Pun joke={ this.state.currentPun.joke } punchLine={ this.state.currentPun.punchLine } />
+                <Button text='Tell Me Another' onClick={ this.update } />
             </div>
         );
     }
 }
 
-export default Home
+function mapStatesToProps(state) {
+    return {
+        puns: state.puns
+    }
+}
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({
+
+    }, dispatch);
+}
+
+export default connect(mapStatesToProps, matchDispatchToProps)(Home);
