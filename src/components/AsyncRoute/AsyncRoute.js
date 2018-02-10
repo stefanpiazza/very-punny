@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Loading from '../Loading/Loading';
+
 class AsyncRoute extends React.Component {
     constructor(props) {
         super(props);
@@ -22,9 +24,8 @@ class AsyncRoute extends React.Component {
             return <this.component {...this.props.props} />
         }
 
-        // React is unhappy without a return statement
         else {
-            return ''
+            return <Loading text='Loading...'/>
         }
     }
 }
