@@ -1,37 +1,6 @@
-const userLogIn = (user) => {
-    return {
-        type: 'USER_LOGGED_IN',
-        payload: user
-    }
-}
-
-const userLogOut = (user) => {
-    return {
-        type: 'USER_LOGGED_OUT',
-        payload: user
-    }
-}
-
-const addPun = (pun) => {
-    return {
-        type: 'ADDED_PUN',
-        payload: pun
-    }
-}
-
-const removePun = (pun) => {
-    return {
-        type: 'REMOVED_PUN',
-        payload: pun
-    }
-}
-
-const selectPun = (pun) => {
-    return {
-        type: 'SELECTED_PUN',
-        payload: pun
-    }
-}
+import { addPun, removePun } from './puns';
+import { selectPun } from './pun';
+import { userLogIn, userLogOut } from './user';
 
 export {
     userLogIn,
