@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -93,13 +92,6 @@ module.exports = {
             allChunks: true,
             filename: 'static/styles/[name].css'
         }),
-        // new BrowserSyncPlugin({
-        //     host: 'localhost',
-        //     notify: false,
-        //     open: false,
-        //     port: 3000,
-        //     proxy: 'http://localhost:5000/'
-        // }),
         new HtmlWebpackPlugin({
             chunks: ['common', 'app'],
             filename: 'index.html',
