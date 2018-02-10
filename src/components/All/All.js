@@ -8,16 +8,10 @@ import { render } from 'react-dom';
 import PunList from '../PunList/PunList';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { addPun, removePun } from '../../actions';
 
 class All extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     data: this.props.puns
-        // }
     }
 
     render() {
@@ -35,11 +29,4 @@ function mapStatesToProps(state) {
     }
 }
 
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({
-        addPun: addPun,
-        removePun: removePun
-    }, dispatch);
-}
-
-export default connect(mapStatesToProps, matchDispatchToProps)(All);
+export default connect(mapStatesToProps, null)(All);
