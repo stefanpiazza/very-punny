@@ -17,7 +17,6 @@ class Admin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: null,
             email: null,
             password: null
         }
@@ -27,7 +26,7 @@ class Admin extends React.Component {
     }
 
     componentWillMount() {
-
+        console.log(this.props.user);
     }
 
     renderLogIn() {
@@ -62,17 +61,13 @@ class Admin extends React.Component {
                 document.getElementById('email').value = '';
                 document.getElementById('password').value = '';
 
-                this.setState({
-                    isLoggedIn: true
-                });
+                this.props.userLogIn({ name: 'Stefan' })
             })
             .catch(() => {
                 document.getElementById('email').value = '';
                 document.getElementById('password').value = '';
 
-                this.setState({
-                    isLoggedIn: false
-                });
+                this.props.userLogOut();
             })
     }
 
@@ -80,9 +75,7 @@ class Admin extends React.Component {
         const auth = firebase.auth();
         auth.signOut()
             .then(() => {
-                this.setState({
-                    isLoggedIn: false
-                });
+                this.props.userLogOut();
             })
     }
 
@@ -90,7 +83,7 @@ class Admin extends React.Component {
         let adminLogin = null;
         let button = null;
 
-        if (!this.state.isLoggedIn) {
+        if (!this.props.user) {
             adminLogin = this.renderLogIn();
             button = <Button text='Log in' onClick={ this.handleLogIn } />
         }
