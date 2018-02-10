@@ -26,9 +26,17 @@ const removePun = (pun) => {
     }
 }
 
+const selectPun = (pun) => {
+    return {
+        type: 'SELECTED_PUN',
+        payload: pun
+    }
+}
+
 export {
     userLogIn,
     userLogOut,
     addPun,
-    removePun
+    removePun,
+    selectPun
 }

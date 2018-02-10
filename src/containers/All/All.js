@@ -5,7 +5,7 @@ var styles = require('./All.scss');
 import React from 'react';
 import { render } from 'react-dom';
 
-import PunList from '../PunList/PunList';
+import PunList from '../../components/PunList/PunList';
 
 import { connect } from 'react-redux';
 

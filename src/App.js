@@ -4,10 +4,10 @@ var styles = require('./App.scss');
 
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Navigation from './components/Navigation/Navigation';
-import Routes from './components/Routes/Routes';
+import AsyncRoute from './components/AsyncRoute/AsyncRoute';
 
 class App extends React.Component {
     constructor(props) {
@@ -20,7 +20,12 @@ class App extends React.Component {
                 <div className='app'>
                     <Navigation />
                     <div className='container'>
-                        <Routes />
+                        <Switch>
+                            <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Home/Home') } />} />
+                            <Route path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/All/All') } />} />
+                            <Route path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Admin/Admin') } />} />
+                            <Route component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/NotFound/NotFound') } />} />
+                        </Switch>
                     </div>
                 </div>
             </Router>

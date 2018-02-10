@@ -5,23 +5,17 @@ var styles = require('./Home.scss');
 import React from 'react';
 import { render } from 'react-dom';
 
-import Button from '../Button/Button';
-import Pun from '../Pun/Pun';
+import Button from '../../components/Button/Button';
+import Pun from '../../components/Pun/Pun';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { selectPun } from '../../actions';
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: this.props.puns,
-            currentIndex: -1,
-            currentPun: {
-                joke: "",
-                punchLine: ""
-            }
-        }
 
         this.update = this.update.bind(this);
     }
@@ -42,20 +36,16 @@ class Home extends React.Component {
     }
 
     update() {
-        let filteredData = this.state.data.filter(item => this.state.data.indexOf(item) !== this.state.currentIndex);
-        let dataIndex = Math.floor(Math.random() * filteredData.length);
-        let item = filteredData[dataIndex];
+        let puns = this.props.puns.filter(item => item !== this.props.pun);
+        let pun = puns[Math.floor(Math.random() * puns.length)];
 
-        this.setState({
-            currentIndex: this.state.data.indexOf(item),
-            currentPun: item
-        })
+        this.props.selectPun(pun);
     }
 
     render() {
         return (
             <div className='home'>
-                <Pun joke={ this.state.currentPun.joke } punchLine={ this.state.currentPun.punchLine } />
+                <Pun joke={ this.props.pun.joke } punchLine={ this.props.pun.punchLine } />
                 <Button text='Tell Me Another' onClick={ this.update } />
             </div>
         );
@@ -64,13 +54,14 @@ class Home extends React.Component {
 
 function mapStatesToProps(state) {
     return {
-        puns: state.puns
+        puns: state.puns,
+        pun: state.pun
     }
 }
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
-
+        selectPun: selectPun
     }, dispatch);
 }
 

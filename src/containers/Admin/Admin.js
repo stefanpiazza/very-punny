@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 
 import * as firebase from 'firebase';
 
-import Button from '../Button/Button';
+import Button from '../../components/Button/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
