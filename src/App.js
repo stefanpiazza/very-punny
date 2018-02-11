@@ -22,8 +22,8 @@ class App extends React.Component {
                     <div className='container'>
                         <Switch>
                             <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Home/Home') } />} />
-                            <Route path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/All/All') } />} />
-                            <Route path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Admin/Admin') } />} />
+                            <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/All/All') } />} />
+                            <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Admin/Admin') } />} />
                             <Route component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/NotFound/NotFound') } />} />
                         </Switch>
                     </div>
