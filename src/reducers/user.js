@@ -1,13 +1,15 @@
-const initialState = null;
+const initialState = {
+    "isLoggedIn": false
+};
 
 export default (state = initialState, action) => {
     switch(action.type) {
         case 'USER_LOGGED_IN':
-            return action.payload
+            return Object.assign({}, state, { "isLoggedIn": true })
             break;
 
         case 'USER_LOGGED_OUT':
-            return null
+            return Object.assign({}, state, { "isLoggedIn": false })
             break;
 
         default:
