@@ -26,7 +26,7 @@ class Admin extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.props.user);
+
     }
 
     renderLogIn() {
@@ -83,7 +83,7 @@ class Admin extends React.Component {
         let adminLogin = null;
         let button = null;
 
-        if (!this.props.user) {
+        if (!this.props.user.isLoggedIn) {
             adminLogin = this.renderLogIn();
             button = <Button text='Log in' onClick={ this.handleLogIn } />
         }

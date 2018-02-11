@@ -8,6 +8,9 @@ import { render } from 'react-dom';
 import PunList from '../../components/PunList/PunList';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { addPun } from '../../actions';
 
 class All extends React.Component {
     constructor(props) {
@@ -29,4 +32,10 @@ function mapStatesToProps(state) {
     }
 }
 
-export default connect(mapStatesToProps, null)(All);
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({
+
+    }, dispatch);
+}
+
+export default connect(mapStatesToProps, matchDispatchToProps)(All);
