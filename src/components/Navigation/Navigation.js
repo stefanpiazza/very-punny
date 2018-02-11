@@ -48,6 +48,9 @@ class Navigation extends React.Component {
             <nav className={ navClass }>
                 <ul className='nav__list'>
                     <li className='nav__list-item'>
+                        <Link to='/admin' className='nav__link' onClick={ this.closeNavigation }>Admin</Link>
+                    </li>
+                    <li className='nav__list-item'>
                         <Link to='/' className='nav__link' onClick={ this.closeNavigation }>Home</Link>
                     </li>
                     <li className='nav__list-item'>
