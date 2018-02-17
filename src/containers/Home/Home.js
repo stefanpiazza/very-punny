@@ -21,17 +21,6 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
-        /**const db = firebase.database();
-        const dbRef = db.ref();
-        const punsRef = dbRef.child('puns');
-        punsRef.once('value', snap => {
-            this.setState({
-                data: snap.val(),
-                isLoading: false
-            })
-            this.update();
-        });**/
-
         this.update();
     }
 
