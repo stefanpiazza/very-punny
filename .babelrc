@@ -1,0 +1,17 @@
+{
+	"env": {
+		"node": {
+			"plugins": [
+				[
+					"css-modules-transform", {
+						"extensions": [".scss"]
+					},
+					"system-import-transformer", {
+						"modules": "common"
+					}
+				]
+			],
+		}
+	},
+	"presets": ["env", "react", "stage-0"]
+}
