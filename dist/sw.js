@@ -24,31 +24,31 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/0.js",
-    "revision": "fda0095680a07a81c08806073908919e"
+    "revision": "1b8472ff8ad95d96a471d72ac1a579d1"
   },
   {
     "url": "static/scripts/1.js",
-    "revision": "c92bf36c675afd40a0b995a2f5c42fbe"
+    "revision": "36ad35c246a5c34c7548b5bd5c472a70"
   },
   {
     "url": "static/scripts/2.js",
-    "revision": "785c26759b382ecb5ee8c4927ed62e93"
+    "revision": "4e9168a7f1f0dc62ee581407ce83ea7e"
   },
   {
     "url": "static/scripts/3.js",
-    "revision": "ad66ed67219066e8bd6b9670f667d335"
+    "revision": "443e8bffc8567054e1f6bc1b70528eb7"
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "7b1628a9f94d35c0ccd4b7aee0236760"
+    "revision": "b522a9cda996b2482202c55bd4402a8b"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "d5386f93d0e6e234ca11bc0048589c25"
+    "revision": "d154771608254b76e34690305177d6fb"
   },
   {
     "url": "/static/styles/app.css",
-    "revision": "167eb5c7f0ae89e3d2a7aa1516567c84"
+    "revision": "1fe1b7f99e21ec3bb0befa5d3a1a3318"
   }
 ];
 
