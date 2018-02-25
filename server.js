@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import path from 'path';
 import React from 'react';
 import reducers from './src/reducers';
+import { addPun } from './src/actions';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
@@ -24,28 +25,38 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
-    res.send(`
-        <!doctype html>
-        <html>
-            <head>
-                <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="manifest" href="manifest.json">
-                <link rel='stylesheet' href='/static/styles/app.css'>
-            </head>
-            <body>
-                <div id='root'>${renderToString(
-                    <Provider store={createStore(reducers)}>
-                        <StaticRouter location={req.url} context={{}}>
-                            <App />
-                        </StaticRouter>
-                    </Provider>
-                )}</div>
-                <script src='/static/scripts/common.js'></script>
-                <script src='/static/scripts/app.js'></script>
-            </body>
-        </html>
-    `)
+    let store;
+
+    const db = firebase.database();
+    const dbRef = db.ref();
+    const punsRef = dbRef.child('puns');
+    punsRef.once('value', snap => {
+        store = createStore(reducers, { user: {"isLoggedIn": false}, puns: snap.val(), pun: {} })       
+    })
+    .then(() => {
+        res.send(`
+            <!doctype html>
+            <html>
+                <head>
+                    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="manifest" href="manifest.json">
+                    <link rel='stylesheet' href='/static/styles/app.css'>
+                </head>
+                <body>
+                    <div id='root'>${renderToString(
+                        <Provider store={store}>
+                            <StaticRouter location={req.url} context={{}}>
+                                <App />
+                            </StaticRouter>
+                        </Provider>
+                    )}</div>
+                    <script src='/static/scripts/common.js'></script>
+                    <script src='/static/scripts/app.js'></script>
+                </body>
+            </html>
+        `)
+    })
 });
 
 app.listen(3000, '0.0.0.0', (err) => {
