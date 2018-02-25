@@ -28,8 +28,10 @@ app.get('*', (req, res) => {
         <!doctype html>
         <html>
             <head>
-                <title></title>
-                <link rel='stylesheet' href='static/styles/app.css'>
+                <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="manifest" href="manifest.json">
+                <link rel='stylesheet' href='/static/styles/app.css'>
             </head>
             <body>
                 <div id='root'>${renderToString(
@@ -39,8 +41,8 @@ app.get('*', (req, res) => {
                         </StaticRouter>
                     </Provider>
                 )}</div>
-                <script src='static/scripts/common.js'></script>
-                <script src='static/scripts/app.js'></script>
+                <script src='/static/scripts/common.js'></script>
+                <script src='/static/scripts/app.js'></script>
             </body>
         </html>
     `)
