@@ -21,24 +21,26 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFetching: true
+            isFetching: (this.props.puns.length > 0 ? false : true)
         }
     }
 
     componentWillMount() {
-        const db = firebase.database();
-        const dbRef = db.ref();
-        const punsRef = dbRef.child('puns');
-        punsRef.once('value', snap => {
-            snap.val().map(pun => {
-                this.props.addPun(pun);
+        if (this.state.isFetching) {
+            const db = firebase.database();
+            const dbRef = db.ref();
+            const punsRef = dbRef.child('puns');
+            punsRef.once('value', snap => {
+                snap.val().map(pun => {
+                    this.props.addPun(pun);
+                })
             })
-        })
-        .then(() => {
-            this.setState({
-                isFetching: false
+            .then(() => {
+                this.setState({
+                    isFetching: false
+                })
             })
-        })
+        }
     }
 
     render() {
