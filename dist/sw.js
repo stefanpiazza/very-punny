@@ -40,7 +40,7 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "b522a9cda996b2482202c55bd4402a8b"
+    "revision": "89182f21279cec5d229af4e946718ee8"
   },
   {
     "url": "/static/scripts/common.js",
