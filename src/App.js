@@ -4,7 +4,7 @@ var styles = require('./App.scss');
 
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import * as firebase from 'firebase';
 
@@ -44,32 +44,28 @@ class App extends React.Component {
     render() {
         if (this.state.isFetching) {
             return (
-                <Router>
-                    <div className='app'>
-                        <Navigation />
-                        <div className='container'>
-                            <Loading text='Loading...'/>
-                        </div>
+                <div className='app'>
+                    <Navigation />
+                    <div className='container'>
+                        <Loading text='Loading...'/>
                     </div>
-                </Router>
+                </div>
             )
         }
 
         else {
             return (
-                <Router>
-                    <div className='app'>
-                        <Navigation />
-                        <div className='container'>
-                            <Switch>
-                                <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Home/Home') } />} />
-                                <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/All/All') } />} />
-                                <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Admin/Admin') } />} />
-                                <Route component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/NotFound/NotFound') } />} />
-                            </Switch>
-                        </div>
+                <div className='app'>
+                    <Navigation />
+                    <div className='container'>
+                        <Switch>
+                            <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Home/Home') } />} />
+                            <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/All/All') } />} />
+                            <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/Admin/Admin') } />} />
+                            <Route component={ (props) => <AsyncRoute props={ props } loading={ System.import('./containers/NotFound/NotFound') } />} />
+                        </Switch>
                     </div>
-                </Router>
+                </div>
             )
         }
     }
@@ -87,4 +83,4 @@ function matchDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStatesToProps, matchDispatchToProps)(App);
+export default withRouter(connect(mapStatesToProps, matchDispatchToProps)(App));
