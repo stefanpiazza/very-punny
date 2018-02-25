@@ -49,7 +49,7 @@ var app = (0, _express2.default)();
 app.use(_express2.default.static(_path2.default.resolve(__dirname, 'dist')));
 
 app.get('*', function (req, res) {
-    res.send('\n        <!doctype html>\n        <html>\n            <head>\n                <title></title>\n                <link rel=\'stylesheet\' href=\'static/styles/app.css\'>\n            </head>\n            <body>\n                <div id=\'root\'>' + (0, _server.renderToString)(_react2.default.createElement(
+    res.send('\n        <!doctype html>\n        <html>\n            <head>\n                <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>\n                <meta name="viewport" content="width=device-width, initial-scale=1">\n                <link rel="manifest" href="manifest.json">\n                <link rel=\'stylesheet\' href=\'/static/styles/app.css\'>\n            </head>\n            <body>\n                <div id=\'root\'>' + (0, _server.renderToString)(_react2.default.createElement(
         _reactRedux.Provider,
         { store: (0, _redux.createStore)(_reducers2.default) },
         _react2.default.createElement(
@@ -57,7 +57,7 @@ app.get('*', function (req, res) {
             { location: req.url, context: {} },
             _react2.default.createElement(_App2.default, null)
         )
-    )) + '</div>\n                <script src=\'static/scripts/common.js\'></script>\n                <script src=\'static/scripts/app.js\'></script>\n            </body>\n        </html>\n    ');
+    )) + '</div>\n                <script src=\'/static/scripts/common.js\'></script>\n                <script src=\'/static/scripts/app.js\'></script>\n            </body>\n        </html>\n    ');
 });
 
 app.listen(3000, '0.0.0.0', function (err) {
