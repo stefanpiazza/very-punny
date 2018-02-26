@@ -1,6 +1,7 @@
 import App from './src/App';
 import express from 'express';
 import firebase from 'firebase';
+import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import reducers from './src/reducers';
@@ -20,42 +21,28 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const index = fs.readFileSync(path.resolve(__dirname, 'dist/ssr-index.html'), 'utf-8');
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
-    let store;
-
     const db = firebase.database();
     const dbRef = db.ref();
     const punsRef = dbRef.child('puns');
-    punsRef.once('value', snap => {
-        store = createStore(reducers, { user: {"isLoggedIn": false}, puns: snap.val(), pun: {} })       
-    })
-    .then(() => {
-        res.send(`
-            <!doctype html>
-            <html>
-                <head>
-                    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <link rel="manifest" href="manifest.json">
-                    <link rel='stylesheet' href='/static/styles/app.css'>
-                </head>
-                <body>
-                    <div id='root'>${renderToString(
-                        <Provider store={store}>
-                            <StaticRouter location={req.url} context={{}}>
-                                <App />
-                            </StaticRouter>
-                        </Provider>
-                    )}</div>
-                    <script src='/static/scripts/common.js'></script>
-                    <script src='/static/scripts/app.js'></script>
-                </body>
-            </html>
-        `)
+    punsRef.once('value').then((snap) => {
+        const store = createStore(reducers, { user: {"isLoggedIn": false}, puns: snap.val(), pun: {} })       
+
+        const html = renderToString(
+            <Provider store={store}>
+                <StaticRouter location={req.url} context={{}}>
+                    <App />
+                </StaticRouter>
+            </Provider>)
+
+        const finalHtml = index.replace('<!-- ::App:: -->', html);
+
+        res.send(finalHtml);
     })
 });
 
