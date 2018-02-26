@@ -12,6 +12,10 @@ var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -23,6 +27,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reducers = require('./src/reducers');
 
 var _reducers2 = _interopRequireDefault(_reducers);
+
+var _actions = require('./src/actions');
 
 var _redux = require('redux');
 
@@ -44,20 +50,32 @@ var config = {
 };
 _firebase2.default.initializeApp(config);
 
+var index = _fs2.default.readFileSync(_path2.default.resolve(__dirname, 'dist/ssr-index.html'), 'utf-8');
 var app = (0, _express2.default)();
 
 app.use(_express2.default.static(_path2.default.resolve(__dirname, 'dist')));
 
 app.get('*', function (req, res) {
-    res.send('\n        <!doctype html>\n        <html>\n            <head>\n                <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>\n                <meta name="viewport" content="width=device-width, initial-scale=1">\n                <link rel="manifest" href="manifest.json">\n                <link rel=\'stylesheet\' href=\'/static/styles/app.css\'>\n            </head>\n            <body>\n                <div id=\'root\'>' + (0, _server.renderToString)(_react2.default.createElement(
-        _reactRedux.Provider,
-        { store: (0, _redux.createStore)(_reducers2.default) },
-        _react2.default.createElement(
-            _reactRouter.StaticRouter,
-            { location: req.url, context: {} },
-            _react2.default.createElement(_App2.default, null)
-        )
-    )) + '</div>\n                <script src=\'/static/scripts/common.js\'></script>\n                <script src=\'/static/scripts/app.js\'></script>\n            </body>\n        </html>\n    ');
+    var db = _firebase2.default.database();
+    var dbRef = db.ref();
+    var punsRef = dbRef.child('puns');
+    punsRef.once('value').then(function (snap) {
+        var store = (0, _redux.createStore)(_reducers2.default, { user: { "isLoggedIn": false }, puns: snap.val(), pun: {} });
+
+        var html = (0, _server.renderToString)(_react2.default.createElement(
+            _reactRedux.Provider,
+            { store: store },
+            _react2.default.createElement(
+                _reactRouter.StaticRouter,
+                { location: req.url, context: {} },
+                _react2.default.createElement(_App2.default, null)
+            )
+        ));
+
+        var finalHtml = index.replace('<!-- ::App:: -->', html);
+
+        res.send(finalHtml);
+    });
 });
 
 app.listen(3000, '0.0.0.0', function (err) {

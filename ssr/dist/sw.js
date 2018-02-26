@@ -19,16 +19,20 @@ importScripts('workbox-sw.prod.v2.1.2.js');
  */
 const fileManifest = [
   {
+    "url": "/ssr-index.html",
+    "revision": "68f9fb011e0df697d14cb8e9825f6e42"
+  },
+  {
     "url": "static/scripts/0.js",
-    "revision": "538f65fca34d6f1f8816edd81aedac93"
+    "revision": "0766f250d3296ee58e956e9f2da81b84"
   },
   {
     "url": "static/scripts/1.js",
-    "revision": "da199b9c39d76e3fbfeca2e85abcb984"
+    "revision": "8eb4fca2e73ad05fbc9e7205f04dfd3d"
   },
   {
     "url": "static/scripts/2.js",
-    "revision": "d1d6872352d32594081e08f069de41ff"
+    "revision": "856c334e071812b9f5f274a7a1ebad74"
   },
   {
     "url": "static/scripts/3.js",
@@ -36,11 +40,11 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "2f90094c7dc949466b74c2e1d2486215"
+    "revision": "639c1995a12d25b02ffe07bf9264672f"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "9b15c2a333a338703deb5b856fb1c8ec"
+    "revision": "e330ca7acb12ed72bc8177c564d2519e"
   },
   {
     "url": "/static/styles/app.css",

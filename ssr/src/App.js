@@ -60,7 +60,7 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            isFetching: true
+            isFetching: _this.props.puns.length > 0 ? false : true
         };
         return _this;
     }
@@ -70,18 +70,20 @@ var App = function (_React$Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            var db = firebase.database();
-            var dbRef = db.ref();
-            var punsRef = dbRef.child('puns');
-            punsRef.once('value', function (snap) {
-                snap.val().map(function (pun) {
-                    _this2.props.addPun(pun);
+            if (this.state.isFetching) {
+                var db = firebase.database();
+                var dbRef = db.ref();
+                var punsRef = dbRef.child('puns');
+                punsRef.once('value', function (snap) {
+                    snap.val().map(function (pun) {
+                        _this2.props.addPun(pun);
+                    });
+                }).then(function () {
+                    _this2.setState({
+                        isFetching: false
+                    });
                 });
-            }).then(function () {
-                _this2.setState({
-                    isFetching: false
-                });
-            });
+            }
         }
     }, {
         key: 'render',
@@ -109,16 +111,16 @@ var App = function (_React$Component) {
                             _reactRouterDom.Switch,
                             null,
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: System.import('./containers/Home/Home') });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Home/Home')) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/all', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: System.import('./containers/All/All') });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/All/All')) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/admin', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: System.import('./containers/Admin/Admin') });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Admin/Admin')) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: System.import('./containers/NotFound/NotFound') });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/NotFound/NotFound')) });
                                 } })
                         )
                     )
