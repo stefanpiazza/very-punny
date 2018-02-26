@@ -86,6 +86,12 @@ module.exports = {
             allChunks: true,
             filename: 'static/styles/[name].css'
         }),
+        new HtmlWebpackPlugin({
+            chunks: ['common', 'app'],
+            filename: 'ssr-index.html',
+            template: './src/index.html',
+            title: 'Very Punny'
+        }),
         new WorkboxPlugin({
             globDirectory: 'ssr/dist',
             globPatterns: ['**/*.{html,js,css}'],
