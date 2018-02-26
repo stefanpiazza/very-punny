@@ -5,9 +5,6 @@
 				[
 					"css-modules-transform", {
 						"extensions": [".scss"]
-					},
-					"system-import-transformer", {
-						"modules": "common"
 					}
 				]
 			],
