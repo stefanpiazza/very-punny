@@ -20,19 +20,19 @@ importScripts('workbox-sw.prod.v2.1.2.js');
 const fileManifest = [
   {
     "url": "/index.html",
-    "revision": "5cc089d917ca5e534f7e262c5ff2b7e3"
+    "revision": "b3d6c80b74727b33cb4f67ddcf484289"
   },
   {
     "url": "static/scripts/0.js",
-    "revision": "1b8472ff8ad95d96a471d72ac1a579d1"
+    "revision": "dd4340e9f9029c485bf88121ceeb97f6"
   },
   {
     "url": "static/scripts/1.js",
-    "revision": "36ad35c246a5c34c7548b5bd5c472a70"
+    "revision": "a0b613db7e0d23c9e378e3247aa00042"
   },
   {
     "url": "static/scripts/2.js",
-    "revision": "4e9168a7f1f0dc62ee581407ce83ea7e"
+    "revision": "38e858fb63b2d5d1ee18d41d1b6ad1bb"
   },
   {
     "url": "static/scripts/3.js",
@@ -40,11 +40,11 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "89182f21279cec5d229af4e946718ee8"
+    "revision": "93993516595bb52b5d541e7cfb5ea890"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "d154771608254b76e34690305177d6fb"
+    "revision": "f4daffffec23b372fcc1c50bc14fa364"
   },
   {
     "url": "/static/styles/app.css",
