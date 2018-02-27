@@ -1,12 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -101,9 +98,6 @@ module.exports = {
         new FaviconsWebpackPlugin({
             logo: './src/favicon.png',
             prefix: 'static/images/favicons/'
-        }),
-        new CompressionPlugin({
-            test: /\.(js|html|css)$/,
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
