@@ -64,6 +64,7 @@ class App extends React.Component {
                             <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Home/Home')) } />} />
                             <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/All/All')) } />} />
                             <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Admin/Admin')) } />} />
+                            <Route path='/pun/:id' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Pun/Pun')) } />} />
                             <Route component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/NotFound/NotFound')) } />} />
                         </Switch>
                     </div>
