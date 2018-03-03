@@ -32,7 +32,11 @@ app.get('*', (req, res) => {
     const dbRef = db.ref();
     const punsRef = dbRef.child('puns');
     punsRef.once('value').then((snap) => {
-        const store = createStore(reducers, { user: {"isLoggedIn": false}, puns: snap.val(), pun: {} })       
+        let puns = snap.val();
+        let pun = puns[Math.floor(Math.random() * puns.length)];
+
+        const store = createStore(reducers, { user: {"isLoggedIn": false}, puns: puns, pun: pun });
+        const preloadedState = store.getState();
 
         const html = renderToString(
             <Provider store={store}>
@@ -41,7 +45,11 @@ app.get('*', (req, res) => {
                 </StaticRouter>
             </Provider>)
 
-        const finalHtml = index.replace('<!-- ::App:: -->', html);
+        const finalHtml = index.replace('<!-- ::App:: -->', html).replace('<!-- ::Redux:: -->', `
+            <script>
+                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+            </script>            
+        `);
 
         res.send(finalHtml);
     })
