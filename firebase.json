@@ -2,6 +2,9 @@
     "database": {
         "rules": "database.rules.json"
     },
+    "functions": {
+        "source": "ssr"
+    },
     "hosting": {
         "public": "dist",
         "ignore": [
@@ -11,7 +14,8 @@
         ],
         "rewrites": [{
             "source": "**",
-            "destination": "/index.html"
+            "destination": "/index.html",
+            "function": "ssrapp"
         }]
     }
 }
