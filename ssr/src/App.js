@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _systemImportTransformerGlobalIdentifier = typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : typeof global !== 'undefined' ? global : {};
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -113,19 +115,29 @@ var App = function (_React$Component) {
                             _reactRouterDom.Switch,
                             null,
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Home/Home')) });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
+                                            _systemImportTransformerGlobalIdentifier.require(['./containers/Home/Home'], resolve, reject);
+                                        }) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/all', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/All/All')) });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
+                                            _systemImportTransformerGlobalIdentifier.require(['./containers/All/All'], resolve, reject);
+                                        }) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/admin', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Admin/Admin')) });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
+                                            _systemImportTransformerGlobalIdentifier.require(['./containers/Admin/Admin'], resolve, reject);
+                                        }) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/pun/:id', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Pun/Pun')) });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
+                                            _systemImportTransformerGlobalIdentifier.require(['./containers/Pun/Pun'], resolve, reject);
+                                        }) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/NotFound/NotFound')) });
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
+                                            _systemImportTransformerGlobalIdentifier.require(['./containers/NotFound/NotFound'], resolve, reject);
+                                        }) });
                                 } })
                         )
                     )
