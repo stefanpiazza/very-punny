@@ -10,7 +10,8 @@ import {render} from 'react-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 
 import reducers from './reducers';
 import App from './App';

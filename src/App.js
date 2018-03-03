@@ -6,7 +6,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 
 import Navigation from './components/Navigation/Navigation';
 import AsyncRoute from './components/AsyncRoute/AsyncRoute';
@@ -63,7 +64,7 @@ class App extends React.Component {
                         <Switch>
                             <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Home/Home')) } />} />
                             <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/All/All')) } />} />
-                            <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Admin/Admin')) } />} />
+                            {<Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Admin/Admin')) } />} />}
                             <Route path='/pun/:id' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Pun/Pun')) } />} />
                             <Route component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/NotFound/NotFound')) } />} />
                         </Switch>

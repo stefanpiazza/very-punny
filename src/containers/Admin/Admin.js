@@ -5,7 +5,8 @@ var styles = require('./Admin.scss');
 import React from 'react';
 import { render } from 'react-dom';
 
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import Button from '../../components/Button/Button';
 import { connect } from 'react-redux';
