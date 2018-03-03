@@ -1,3 +1,4 @@
+import * as functions from 'firebase-functions';
 import App from './src/App';
 import express from 'express';
 import firebase from 'firebase';
@@ -46,10 +47,12 @@ app.get('*', (req, res) => {
     })
 });
 
-app.listen(3000, '0.0.0.0', (err) => {
+app.listen(3001, '0.0.0.0', (err) => {
     if (err) {
         console.error(err);
     } else {
-        console.info('Listening at http://localhost:3000');
+        console.info('Listening at http://localhost:3001');
     }
 });
+
+export let ssrapp = functions.https.onRequest(app);
