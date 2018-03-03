@@ -1,4 +1,4 @@
-importScripts('workbox-sw.prod.v2.1.2.js');
+importScripts('workbox-sw.prod.v2.1.3.js');
 
 /**
  * DO NOT EDIT THE FILE MANIFEST ENTRY
@@ -20,35 +20,23 @@ importScripts('workbox-sw.prod.v2.1.2.js');
 const fileManifest = [
   {
     "url": "/index.html",
-    "revision": "b3d6c80b74727b33cb4f67ddcf484289"
-  },
-  {
-    "url": "static/scripts/0.js",
-    "revision": "dd4340e9f9029c485bf88121ceeb97f6"
-  },
-  {
-    "url": "static/scripts/1.js",
-    "revision": "a0b613db7e0d23c9e378e3247aa00042"
-  },
-  {
-    "url": "static/scripts/2.js",
-    "revision": "38e858fb63b2d5d1ee18d41d1b6ad1bb"
-  },
-  {
-    "url": "static/scripts/3.js",
-    "revision": "443e8bffc8567054e1f6bc1b70528eb7"
+    "revision": "89ee118523b7d4891ec8774d2cd72c70"
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "93993516595bb52b5d541e7cfb5ea890"
+    "revision": "84eb2b28669da973706cbc0a9e1f7eda"
   },
   {
-    "url": "/static/scripts/common.js",
-    "revision": "f4daffffec23b372fcc1c50bc14fa364"
+    "url": "static/scripts/common.js",
+    "revision": "450c1a68368a509d95a4332da27bc83b"
   },
   {
     "url": "/static/styles/app.css",
     "revision": "1fe1b7f99e21ec3bb0befa5d3a1a3318"
+  },
+  {
+    "url": "workbox-sw.prod.v2.1.2.js",
+    "revision": "685d1ceb6b9a9f94aacf71d6aeef8b51"
   }
 ];
 
