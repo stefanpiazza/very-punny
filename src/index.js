@@ -45,8 +45,11 @@ else if (process.env.NODE_ENV === 'production' ) {
     }
 }
 
+const preloadedState = window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__;
+
 const history = createBrowserHistory();
-const store = createStore(reducers, applyMiddleware(routerMiddleware(history)));
+const store = createStore(reducers, preloadedState, applyMiddleware(routerMiddleware(history)));
 
 render(
     <Provider store={store}>
