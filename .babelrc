@@ -2,11 +2,12 @@
 	"env": {
 		"node": {
 			"plugins": [
-				[
-					"css-modules-transform", {
-						"extensions": [".scss"]
-					}
-				]
+				["system-import-transformer", {
+					"modules": "amd"
+				}],
+				["css-modules-transform", {
+					"extensions": [".scss"]
+				}]
 			],
 		}
 	},
