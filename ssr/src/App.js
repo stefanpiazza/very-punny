@@ -14,9 +14,11 @@ var _reactDom = require('react-dom');
 
 var _reactRouterDom = require('react-router-dom');
 
-var _firebase = require('firebase');
+var _app = require('firebase/app');
 
-var firebase = _interopRequireWildcard(_firebase);
+var firebase = _interopRequireWildcard(_app);
+
+require('firebase/database');
 
 var _Navigation = require('./components/Navigation/Navigation');
 
@@ -118,6 +120,9 @@ var App = function (_React$Component) {
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/admin', component: function component(props) {
                                     return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Admin/Admin')) });
+                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: '/pun/:id', component: function component(props) {
+                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/Pun/Pun')) });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { component: function component(props) {
                                     return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: Promise.resolve(require('./containers/NotFound/NotFound')) });

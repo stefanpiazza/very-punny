@@ -23,7 +23,7 @@ var Button = function Button(_ref) {
         text = _ref.text;
 
     return _react2.default.createElement(
-        'div',
+        'button',
         { className: 'button', onClick: onClick },
         text
     );

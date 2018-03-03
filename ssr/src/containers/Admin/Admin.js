@@ -12,9 +12,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
-var _firebase = require('firebase');
+var _app = require('firebase/app');
 
-var firebase = _interopRequireWildcard(_firebase);
+var firebase = _interopRequireWildcard(_app);
+
+require('firebase/auth');
 
 var _Button = require('../../components/Button/Button');
 

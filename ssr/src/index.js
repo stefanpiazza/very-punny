@@ -18,9 +18,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _firebase = require('firebase');
+var _app = require('firebase/app');
 
-var firebase = _interopRequireWildcard(_firebase);
+var firebase = _interopRequireWildcard(_app);
+
+require('firebase/database');
 
 var _reducers = require('./reducers');
 
