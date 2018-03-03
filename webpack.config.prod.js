@@ -73,9 +73,9 @@ module.exports = {
         }
     },
     output: {
-        chunkFilename: './static/scripts/[name].js',
-        filename: './static/scripts/[name].js',
-        path: path.resolve(__dirname, './dist/'),
+        chunkFilename: 'static/scripts/[name].js',
+        filename: 'static/scripts/[name].js',
+        path: path.resolve(__dirname, 'dist/'),
         publicPath: '/'
     },
     plugins: [
@@ -86,7 +86,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             chunks: ['common', 'app'],
             filename: 'index.html',
-            template: './src/index.html',
+            template: 'src/index.html',
             title: 'Very Punny'
         }),
         new WorkboxPlugin({
