@@ -13,60 +13,52 @@ module.exports = {
     mode: 'production',
     module: {
         rules: [{
-                test: /\.(jpe?g|png|gif|svg)$/,
+            test: /\.(jpe?g|png|gif|svg)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '/static/images/[name].[ext]'
+                }
+            }, {
+                loader: 'image-webpack-loader'
+            }]
+        }, {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
                 use: [{
-                        loader: 'file-loader',
-                        options: {
-                            name: '/static/images/[name].[ext]'
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader'
-                    }
-                ]
-            },
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [{
-                            loader: 'css-loader',
-                            options: {
-                                camelCase: true,
-                                // Keep same as class definition for now
-                                localIdentName: '[local]',
-                                importLoaders: 2,
-                                minimize: true,
-                                modules: true,
-                                sourceMap: false
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: false
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: false
-                            }
-                        }
-                    ]
-                })
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
+                    loader: 'css-loader',
                     options: {
-                        presets: ['env', 'react', 'stage-0']
+                        camelCase: true,
+                        // Keep same as class definition for now
+                        localIdentName: '[local]',
+                        importLoaders: 2,
+                        minimize: true,
+                        modules: true,
+                        sourceMap: false
                     }
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: false
+                    }
+                }, {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: false
+                    }
+                }]
+            })
+        }, {
+            test: /\.(js|jsx)$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env', 'react', 'stage-0']
                 }
             }
-        ]
+        }]
     },
     optimization: {
         splitChunks: {
