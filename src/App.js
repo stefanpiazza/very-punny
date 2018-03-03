@@ -16,7 +16,9 @@ import Loading from './components/Loading/Loading';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { addPun } from './actions';
+import { addPun, selectPun } from './actions';
+
+import Home from './containers/Home/Home';
 
 class App extends React.Component {
     constructor(props) {
@@ -32,9 +34,14 @@ class App extends React.Component {
             const dbRef = db.ref();
             const punsRef = dbRef.child('puns');
             punsRef.once('value', snap => {
-                snap.val().map(pun => {
+                let puns = snap.val();
+                let pun = puns[Math.floor(Math.random() * puns.length)];
+
+                puns.map(pun => {
                     this.props.addPun(pun);
                 })
+
+                this.props.selectPun(pun);
             })
             .then(() => {
                 this.setState({
@@ -62,7 +69,8 @@ class App extends React.Component {
                     <Navigation />
                     <div className='container'>
                         <Switch>
-                            <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Home/Home') } />} />
+                            <Route exact path='/' component={ Home } />
+                            {/*<Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Home/Home') } />} />*/}
                             <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/All/All') } />} />
                             <Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Admin/Admin') } />} />
                             <Route path='/pun/:id' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Pun/Pun') } />} />
@@ -77,13 +85,15 @@ class App extends React.Component {
 
 function mapStatesToProps(state) {
     return {
-        puns: state.puns
+        puns: state.puns,
+        pun: state.pun
     }
 }
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
-        addPun: addPun
+        addPun: addPun,
+        selectPun: selectPun
     }, dispatch);
 }
 
