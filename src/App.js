@@ -62,11 +62,11 @@ class App extends React.Component {
                     <Navigation />
                     <div className='container'>
                         <Switch>
-                            <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Home/Home')) } />} />
-                            <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/All/All')) } />} />
-                            {<Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Admin/Admin')) } />} />}
-                            <Route path='/pun/:id' component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/Pun/Pun')) } />} />
-                            <Route component={ (props) => <AsyncRoute props={ props } loading={ Promise.resolve(require('./containers/NotFound/NotFound')) } />} />
+                            <Route exact path='/' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Home/Home') } />} />
+                            <Route exact path='/all' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/All/All') } />} />
+                            {<Route exact path='/admin' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Admin/Admin') } />} />}
+                            <Route path='/pun/:id' component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/Pun/Pun') } />} />
+                            <Route component={ (props) => <AsyncRoute props={ props } loading={ import('./containers/NotFound/NotFound') } />} />
                         </Switch>
                     </div>
                 </div>
