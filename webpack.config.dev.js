@@ -87,7 +87,7 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html',
             title: 'Very Punny'
-        })
+        }),
         new webpack.HotModuleReplacementPlugin()
     ]
 }
