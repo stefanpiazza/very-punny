@@ -19,48 +19,40 @@ importScripts('workbox-sw.prod.v2.1.3.js');
  */
 const fileManifest = [
   {
-    "url": "/index.html",
-    "revision": "4ff0ec7e5d56fa9901264a276cfbb271"
+    "url": "index.html",
+    "revision": "b6e3a5da676cff12b5f61a77849bc3b6"
   },
   {
     "url": "/static/scripts/0.js",
-    "revision": "6a4d12018177ed3baf47568a4c9f1280"
+    "revision": "7f0ebf233c3e220f029d3fc65654a9dd"
   },
   {
     "url": "/static/scripts/1.js",
-    "revision": "13d1c003e2fe24132932b0a62a32dd5a"
+    "revision": "90c63c00a0e393090f0ae7c23e65e73f"
   },
   {
     "url": "/static/scripts/2.js",
-    "revision": "237011216dfd1567af7037b1cf5fea44"
+    "revision": "81b3e1ba539df807d445f52f20988d50"
   },
   {
     "url": "/static/scripts/3.js",
-    "revision": "2b4c0e55503d9f57122cb72fc9eb9bd8"
-  },
-  {
-    "url": "/static/scripts/4.js",
-    "revision": "761715302135a2860e3ad8eaebb95e5a"
-  },
-  {
-    "url": "static/scripts/5.js",
-    "revision": "cff9f474bc4a59eb72ca5095db61b745"
+    "revision": "30c29db95c6e7c116726410ef4195616"
   },
   {
     "url": "/static/scripts/app.js",
-    "revision": "245c4692f0e584ab5f002dee05ae3280"
+    "revision": "ced07e00bd564c9480365b7a6f9a6714"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "4035ee41d3054656a0579c1a5c5be38b"
+    "revision": "147ac6539d1f9cef18783570ea6091c7"
   },
   {
     "url": "/static/styles/app.css",
-    "revision": "d3828a441413f350d9566ecbfc0107c8"
+    "revision": "b050a44d2e9347c1a8bdbc2f5f4d56b9"
   },
   {
     "url": "/static/styles/common.css",
-    "revision": "768f3991d68bde890832571d5306fc36"
+    "revision": "f7c5fb9a2cb21af81c493235893bb8ee"
   }
 ];
 

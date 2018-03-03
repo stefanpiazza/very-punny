@@ -71,7 +71,11 @@ app.get('*', function (req, res) {
     var dbRef = db.ref();
     var punsRef = dbRef.child('puns');
     punsRef.once('value').then(function (snap) {
-        var store = (0, _redux.createStore)(_reducers2.default, { user: { "isLoggedIn": false }, puns: snap.val(), pun: {} });
+        var puns = snap.val();
+        var pun = puns[Math.floor(Math.random() * puns.length)];
+
+        var store = (0, _redux.createStore)(_reducers2.default, { user: { "isLoggedIn": false }, puns: puns, pun: pun });
+        var preloadedState = store.getState();
 
         var html = (0, _server.renderToString)(_react2.default.createElement(
             _reactRedux.Provider,
@@ -83,17 +87,17 @@ app.get('*', function (req, res) {
             )
         ));
 
-        var finalHtml = index.replace('<!-- ::App:: -->', html);
+        var finalHtml = index.replace('<!-- ::App:: -->', html).replace('<!-- ::Redux:: -->', '\n            <script>\n                window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState).replace(/</g, '\\u003c') + '\n            </script>            \n        ');
 
         res.send(finalHtml);
     });
 });
 
-app.listen(3000, '0.0.0.0', function (err) {
+app.listen(3001, '0.0.0.0', function (err) {
     if (err) {
         console.error(err);
     } else {
-        console.info('Listening at http://localhost:3000');
+        console.info('Listening at http://localhost:3001');
     }
 });
 

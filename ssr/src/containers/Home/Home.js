@@ -52,9 +52,7 @@ var Home = function (_React$Component) {
 
     _createClass(Home, [{
         key: 'componentWillMount',
-        value: function componentWillMount() {
-            this.update();
-        }
+        value: function componentWillMount() {}
     }, {
         key: 'update',
         value: function update() {

@@ -40,6 +40,10 @@ var _redux = require('redux');
 
 var _actions = require('./actions');
 
+var _Home = require('./containers/Home/Home');
+
+var _Home2 = _interopRequireDefault(_Home);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -79,9 +83,14 @@ var App = function (_React$Component) {
                 var dbRef = db.ref();
                 var punsRef = dbRef.child('puns');
                 punsRef.once('value', function (snap) {
-                    snap.val().map(function (pun) {
+                    var puns = snap.val();
+                    var pun = puns[Math.floor(Math.random() * puns.length)];
+
+                    puns.map(function (pun) {
                         _this2.props.addPun(pun);
                     });
+
+                    _this2.props.selectPun(pun);
                 }).then(function () {
                     _this2.setState({
                         isFetching: false
@@ -114,11 +123,7 @@ var App = function (_React$Component) {
                         _react2.default.createElement(
                             _reactRouterDom.Switch,
                             null,
-                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: function component(props) {
-                                    return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
-                                            _systemImportTransformerGlobalIdentifier.require(['./containers/Home/Home'], resolve, reject);
-                                        }) });
-                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/all', component: function component(props) {
                                     return _react2.default.createElement(_AsyncRoute2.default, { props: props, loading: new Promise(function (resolve, reject) {
                                             _systemImportTransformerGlobalIdentifier.require(['./containers/All/All'], resolve, reject);
@@ -151,13 +156,15 @@ var App = function (_React$Component) {
 
 function mapStatesToProps(state) {
     return {
-        puns: state.puns
+        puns: state.puns,
+        pun: state.pun
     };
 }
 
 function matchDispatchToProps(dispatch) {
     return (0, _redux.bindActionCreators)({
-        addPun: _actions.addPun
+        addPun: _actions.addPun,
+        selectPun: _actions.selectPun
     }, dispatch);
 }
 

@@ -65,8 +65,11 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
     }
 }
 
+var preloadedState = window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__;
+
 var history = (0, _history.createBrowserHistory)();
-var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)((0, _reactRouterRedux.routerMiddleware)(history)));
+var store = (0, _redux.createStore)(_reducers2.default, preloadedState, (0, _redux.applyMiddleware)((0, _reactRouterRedux.routerMiddleware)(history)));
 
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRedux.Provider,
