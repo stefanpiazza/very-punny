@@ -8,7 +8,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
     entry: {
         app: './src/index.js',
-        common: ['react', 'react-dom', 'firebase']
+        common: ['react', 'react-dom']
     },
     mode: 'production',
     module: {
@@ -73,7 +73,7 @@ module.exports = {
             cacheGroups: {
                 common: {
                     chunks: "initial",
-                    test: "common",
+                    test: path.resolve(__dirname, "node_modules"),
                     name: "common",
                     enforce: true
                 }
