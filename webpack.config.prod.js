@@ -96,11 +96,5 @@ module.exports = {
             clientsClaim: true,
             skipWaiting: true,
         })
-    ],
-    resolve: {
-        alias: {
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat'
-        }
-    }
+    ]
 }
