@@ -3,12 +3,78 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: {
         app: './src/index.js',
         common: ['react', 'react-dom', 'firebase']
+    },
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        publicPath: '/'
+    },
+    devtool: 'source-map',
+    mode: 'development',
+    module: {
+        rules: [{
+            test: /\.(jpe?g|png|gif|svg)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '/static/images/[name].[ext]'
+                }
+            }, {
+                loader: 'image-webpack-loader'
+            }]
+        }, {
+            test: /\.scss$/,
+            use: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader',
+                options: {
+                    camelCase: true,
+                    // Keep same as class definition for now
+                    localIdentName: '[local]',
+                    importLoaders: 2,
+                    modules: true,
+                    sourceMap: true
+                }
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true
+                }
+            }, {
+                loader: 'sass-loader',
+                options: {
+                    sourceMap: true
+                }
+            }]
+        }, {
+            test: /\.(js|jsx)$/,
+            exclude: /(node_modules|bower_components)/,
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env', 'react', 'stage-0', 'react-hmre']
+                }
+            }]
+        }]
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                common: {
+                    chunks: "initial",
+                    test: "common",
+                    name: "common",
+                    enforce: true
+                }
+            }
+        }
     },
     output: {
         chunkFilename: './static/scripts/[name].js',
@@ -16,75 +82,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist/'),
         publicPath: '/'
     },
-    devtool: 'source-map',
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        publicPath: '/'
-    },
-    module: {
-        rules: [{
-                test: /\.(jpe?g|png|gif|svg)$/,
-                use: [{
-                        loader: 'file-loader',
-                        options: {
-                            name: '/static/images/[name].[ext]'
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader'
-                    }
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: [{
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            camelCase: true,
-                            // Keep same as class definition for now
-                            localIdentName: '[local]',
-                            importLoaders: 2,
-                            modules: true,
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env', 'react', 'stage-0', 'react-hmre']
-                    }
-                }]
-            }
-        ]
-    },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: 'static/scripts/common.js',
-            minChunks: Infinity,
-        }),
         new HtmlWebpackPlugin({
             chunks: ['common', 'app'],
             filename: 'index.html',
@@ -95,15 +93,6 @@ module.exports = {
             from: './src/manifest.json',
             to: 'manifest.json'
         }]),
-        new FaviconsWebpackPlugin({
-            logo: './src/favicon.png',
-            prefix: 'static/images/favicons/'
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.NamedModulesPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        })
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

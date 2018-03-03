@@ -5,8 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
@@ -14,18 +12,7 @@ module.exports = {
         app: './src/index.js',
         common: ['react', 'react-dom', 'firebase']
     },
-    output: {
-        chunkFilename: './static/scripts/[name].js',
-        filename: './static/scripts/[name].js',
-        path: path.resolve(__dirname, './dist/'),
-        publicPath: '/'
-    },
-    resolve: {
-        alias: {
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat'
-        }
-    },
+    mode: 'production',
     module: {
         rules: [{
                 test: /\.(jpe?g|png|gif|svg)$/,
@@ -82,12 +69,25 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                common: {
+                    chunks: "initial",
+                    test: "common",
+                    name: "common",
+                    enforce: true
+                }
+            }
+        }
+    },
+    output: {
+        chunkFilename: './static/scripts/[name].js',
+        filename: './static/scripts/[name].js',
+        path: path.resolve(__dirname, './dist/'),
+        publicPath: '/'
+    },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: 'static/scripts/common.js',
-            minChunks: Infinity,
-        }),
         new ExtractTextPlugin({
             allChunks: true,
             filename: 'static/styles/[name].css'
@@ -109,15 +109,14 @@ module.exports = {
             from: './src/manifest.json',
             to: 'manifest.json'
         }]),
-        new FaviconsWebpackPlugin({
-            logo: './src/favicon.png',
-            prefix: 'static/images/favicons/'
-        }),
         new CompressionPlugin({
             test: /\.(js|html|css)$/,
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
         })
-    ]
+    ],
+    resolve: {
+        alias: {
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat'
+        }
+    }
 }
