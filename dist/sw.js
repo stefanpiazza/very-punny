@@ -28,27 +28,31 @@ const fileManifest = [
   },
   {
     "url": "/static/scripts/1.js",
-    "revision": "2b5ba2629baaf1abedcb7124cfc36361"
+    "revision": "13d1c003e2fe24132932b0a62a32dd5a"
   },
   {
     "url": "/static/scripts/2.js",
-    "revision": "c211557985eef54dd3a57d0588e8b579"
+    "revision": "237011216dfd1567af7037b1cf5fea44"
   },
   {
     "url": "/static/scripts/3.js",
-    "revision": "fbf95d53838dd6e7b988b8dc49247ff8"
+    "revision": "2b4c0e55503d9f57122cb72fc9eb9bd8"
   },
   {
     "url": "/static/scripts/4.js",
-    "revision": "94f1e7c3d8155c895813688bd116e78e"
+    "revision": "761715302135a2860e3ad8eaebb95e5a"
+  },
+  {
+    "url": "static/scripts/5.js",
+    "revision": "cff9f474bc4a59eb72ca5095db61b745"
   },
   {
     "url": "/static/scripts/app.js",
-    "revision": "800ee1ffd66af173e5e16d57cde4b77b"
+    "revision": "245c4692f0e584ab5f002dee05ae3280"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "21c3c50b768eccf5738b00e870e1a680"
+    "revision": "4035ee41d3054656a0579c1a5c5be38b"
   },
   {
     "url": "/static/styles/app.css",
@@ -57,10 +61,6 @@ const fileManifest = [
   {
     "url": "/static/styles/common.css",
     "revision": "768f3991d68bde890832571d5306fc36"
-  },
-  {
-    "url": "workbox-sw.prod.v2.1.2.js",
-    "revision": "685d1ceb6b9a9f94aacf71d6aeef8b51"
   }
 ];
 
