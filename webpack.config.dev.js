@@ -5,8 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
-        common: ['react', 'react-dom']
+        app: './src/index.js'
     },
     devServer: {
         historyApiFallback: true,

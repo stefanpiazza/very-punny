@@ -4,11 +4,11 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     entry: {
-        app: './src/index.js',
-        common: ['react', 'react-dom']
+        app: './src/index.js'
     },
     mode: 'production',
     module: {
@@ -95,6 +95,9 @@ module.exports = {
             swDest: path.join('dist', 'sw.js'),
             clientsClaim: true,
             skipWaiting: true,
+        }),
+        new CompressionPlugin({
+            test: /\.(js|jsx)$/
         })
     ]
 }
