@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack.config.dev.js",
         "build": "./node_modules/.bin/webpack --config ./webpack.config.prod.js",
-        "build-ssr": "cross-env BABEL_ENV=node ./node_modules/.bin/babel server.js -d ssr/ && cross-env BABEL_ENV=node ./node_modules/.bin/babel src -d ssr/src && cross-env NODE_ENV=production ./node_modules/.bin/webpack -p --config ./webpack.config.ssr.js",
+        "build-ssr": "cross-env BABEL_ENV=node ./node_modules/.bin/babel server.js -d ssr/ && cross-env BABEL_ENV=node ./node_modules/.bin/babel src -d ssr/src && cross-env ./node_modules/.bin/webpack --config ./webpack.config.ssr.js",
         "deploy": "firebase deploy",
         "prod": "firebase serve",
         "prod-ssr": "node ssr/server.js"
