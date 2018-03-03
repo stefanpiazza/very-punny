@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -38,6 +36,7 @@ module.exports = {
                                 // Keep same as class definition for now
                                 localIdentName: '[local]',
                                 importLoaders: 2,
+                                minimize: true,
                                 modules: true,
                                 sourceMap: false
                             }
@@ -104,13 +103,6 @@ module.exports = {
             swDest: path.join('dist', 'sw.js'),
             clientsClaim: true,
             skipWaiting: true,
-        }),
-        new CopyWebpackPlugin([{
-            from: './src/manifest.json',
-            to: 'manifest.json'
-        }]),
-        new CompressionPlugin({
-            test: /\.(js|html|css)$/,
         })
     ],
     resolve: {

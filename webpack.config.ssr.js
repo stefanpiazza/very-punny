@@ -4,22 +4,13 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
         app: './src/index.js',
         common: ['react', 'react-dom', 'firebase']
     },
-    output: {
-        chunkFilename: './static/scripts/[name].js',
-        filename: './static/scripts/[name].js',
-        path: path.resolve(__dirname, './ssr/dist/'),
-        publicPath: '/'
-    },
+    mode: 'production',
     module: {
         rules: [{
                 test: /\.(jpe?g|png|gif|svg)$/,
@@ -45,6 +36,7 @@ module.exports = {
                                 // Keep same as class definition for now
                                 localIdentName: '[local]',
                                 importLoaders: 2,
+                                minimize: true,
                                 modules: true,
                                 sourceMap: false
                             }
@@ -76,42 +68,41 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                common: {
+                    chunks: "initial",
+                    test: "common",
+                    name: "common",
+                    enforce: true
+                }
+            }
+        }
+    },
+    output: {
+        chunkFilename: './static/scripts/[name].js',
+        filename: './static/scripts/[name].js',
+        path: path.resolve(__dirname, './ssr/dist/'),
+        publicPath: '/'
+    },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: 'static/scripts/common.js',
-            minChunks: Infinity,
-        }),
         new ExtractTextPlugin({
             allChunks: true,
             filename: 'static/styles/[name].css'
         }),
         new HtmlWebpackPlugin({
             chunks: ['common', 'app'],
-            filename: 'ssr-index.html',
+            filename: 'index.html',
             template: './src/index.html',
             title: 'Very Punny'
         }),
         new WorkboxPlugin({
-            globDirectory: 'ssr/dist',
+            globDirectory: 'dist',
             globPatterns: ['**/*.{html,js,css}'],
-            swDest: path.join('ssr/dist', 'sw.js'),
+            swDest: path.join('dist', 'sw.js'),
             clientsClaim: true,
             skipWaiting: true,
-        }),
-        new CopyWebpackPlugin([{
-            from: './src/manifest.json',
-            to: 'manifest.json'
-        }]),
-        new FaviconsWebpackPlugin({
-            logo: './src/favicon.png',
-            prefix: 'static/images/favicons/'
-        }),
-        new CompressionPlugin({
-            test: /\.(js|html|css)$/,
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
 }
