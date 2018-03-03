@@ -6,10 +6,6 @@
     "scripts": {},
     "author": "",
     "license": "ISC",
-    "devDependencies": {
-        "express": "^4.15.3",
-        "path": "^0.12.7"
-    },
     "dependencies": {
         "firebase": "^4.8.1",
         "firebase-admin": "^5.9.0",

@@ -1,5 +1,14 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ssrapp = undefined;
+
+var _firebaseFunctions = require('firebase-functions');
+
+var functions = _interopRequireWildcard(_firebaseFunctions);
+
 var _App = require('./src/App');
 
 var _App2 = _interopRequireDefault(_App);
@@ -39,6 +48,8 @@ var _server = require('react-dom/server');
 var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var config = {
     apiKey: "AIzaSyDXFaxhOmIfqVN7S2UjhVa3-L8W8-FPIDM",
@@ -85,3 +96,5 @@ app.listen(3000, '0.0.0.0', function (err) {
         console.info('Listening at http://localhost:3000');
     }
 });
+
+var ssrapp = exports.ssrapp = functions.https.onRequest(app);
