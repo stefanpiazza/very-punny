@@ -24,11 +24,11 @@ const fileManifest = [
   },
   {
     "url": "static/scripts/app.js",
-    "revision": "84eb2b28669da973706cbc0a9e1f7eda"
+    "revision": "ceed36b0e5ec42754e5ce8b783f66580"
   },
   {
     "url": "static/scripts/common.js",
-    "revision": "450c1a68368a509d95a4332da27bc83b"
+    "revision": "de008af3036b02040774b8e14e7701b2"
   },
   {
     "url": "/static/styles/app.css",
