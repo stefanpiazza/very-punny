@@ -35,21 +35,23 @@ app.get('*', (req, res) => {
         let puns = snap.val();
         let pun = puns[Math.floor(Math.random() * puns.length)];
 
-        const store = createStore(reducers, { user: {"isLoggedIn": false}, puns: puns, pun: pun });
-        const preloadedState = store.getState();
+        const preloadedState = { user: {"isLoggedIn": false}, puns: puns, pun: pun }
+        const store = createStore(reducers, preloadedState);
 
-        const html = renderToString(
+        const reactApp = renderToString(
             <Provider store={store}>
                 <StaticRouter location={req.url} context={{}}>
                     <App />
                 </StaticRouter>
             </Provider>)
 
-        const finalHtml = index.replace('<!-- ::App:: -->', html).replace('<!-- ::Redux:: -->', `
+        const reduxState = `
             <script>
-                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
             </script>            
-        `);
+        `;
+
+        const finalHtml = index.replace('<!-- ::React:: -->', reactApp).replace('<!-- ::Redux:: -->', reduxState);
 
         res.send(finalHtml);
     })
