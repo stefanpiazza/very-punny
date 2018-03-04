@@ -2,11 +2,11 @@
 
 var styles = require('./index.scss');
 
-import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
-import {createBrowserHistory} from 'history';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import {render} from 'react-dom';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { createBrowserHistory } from 'history';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
