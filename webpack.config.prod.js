@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -98,6 +99,10 @@ module.exports = {
         }),
         new CompressionPlugin({
             test: /\.(js|jsx)$/
-        })
+        }),
+        new CopyWebpackPlugin([{
+            from: 'src/manifest.json',
+            to: 'manifest.json'
+        }])
     ]
 }

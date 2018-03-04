@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -87,6 +88,10 @@ module.exports = {
             template: 'src/index.html',
             title: 'Very Punny'
         }),
+        new CopyWebpackPlugin([{
+            from: 'src/manifest.json',
+            to: 'manifest.json'
+        }]),
         new webpack.HotModuleReplacementPlugin()
     ]
 }
