@@ -5,6 +5,13 @@ const addPun = (pun) => {
     }
 }
 
+const addPuns = (puns) => {
+    return {
+        type: 'ADDED_PUNS',
+        payload: puns
+    }
+}
+
 const removePun = (pun) => {
     return {
         type: 'REMOVED_PUN',
@@ -14,5 +21,6 @@ const removePun = (pun) => {
 
 export {
     addPun,
+    addPuns,
     removePun
 }

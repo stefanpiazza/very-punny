@@ -53,6 +53,9 @@ export default (state = initialState, action) => {
             ]
             break;
 
+        case 'ADDED_PUNS':
+            return [...state], action.payload
+
         case 'REMOVED_PUN':
             return state.filter((pun) => state.indexOf(pun) !== state.indexOf(action.payload))
             break;

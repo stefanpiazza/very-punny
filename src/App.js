@@ -9,16 +9,15 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
-import Navigation from './components/Navigation/Navigation';
 import AsyncRoute from './components/AsyncRoute/AsyncRoute';
+import Home from './containers/Home/Home';
 import Loading from './components/Loading/Loading';
+import Navigation from './components/Navigation/Navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { addPun, selectPun } from './actions';
-
-import Home from './containers/Home/Home';
+import { addPuns, selectPun } from './actions';
 
 class App extends React.Component {
     constructor(props) {
@@ -37,10 +36,7 @@ class App extends React.Component {
                 let puns = snap.val();
                 let pun = puns[Math.floor(Math.random() * puns.length)];
 
-                puns.map(pun => {
-                    this.props.addPun(pun);
-                })
-
+                this.props.addPuns(puns);
                 this.props.selectPun(pun);
             })
             .then(() => {
@@ -92,7 +88,7 @@ function mapStatesToProps(state) {
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
-        addPun: addPun,
+        addPuns: addPuns,
         selectPun: selectPun
     }, dispatch);
 }
