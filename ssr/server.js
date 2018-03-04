@@ -74,10 +74,10 @@ app.get('*', function (req, res) {
         var puns = snap.val();
         var pun = puns[Math.floor(Math.random() * puns.length)];
 
-        var store = (0, _redux.createStore)(_reducers2.default, { user: { "isLoggedIn": false }, puns: puns, pun: pun });
-        var preloadedState = store.getState();
+        var preloadedState = { user: { "isLoggedIn": false }, puns: puns, pun: pun };
+        var store = (0, _redux.createStore)(_reducers2.default, preloadedState);
 
-        var html = (0, _server.renderToString)(_react2.default.createElement(
+        var reactApp = (0, _server.renderToString)(_react2.default.createElement(
             _reactRedux.Provider,
             { store: store },
             _react2.default.createElement(
@@ -87,7 +87,9 @@ app.get('*', function (req, res) {
             )
         ));
 
-        var finalHtml = index.replace('<!-- ::App:: -->', html).replace('<!-- ::Redux:: -->', '\n            <script>\n                window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState).replace(/</g, '\\u003c') + '\n            </script>            \n        ');
+        var reduxState = '\n            <script>\n                window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState) + '\n            </script>            \n        ';
+
+        var finalHtml = index.replace('<!-- ::React:: -->', reactApp).replace('<!-- ::Redux:: -->', reduxState);
 
         res.send(finalHtml);
     });

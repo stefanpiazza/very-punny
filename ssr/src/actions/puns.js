@@ -10,6 +10,13 @@ var addPun = function addPun(pun) {
     };
 };
 
+var addPuns = function addPuns(puns) {
+    return {
+        type: 'ADDED_PUNS',
+        payload: puns
+    };
+};
+
 var removePun = function removePun(pun) {
     return {
         type: 'REMOVED_PUN',
@@ -18,4 +25,5 @@ var removePun = function removePun(pun) {
 };
 
 exports.addPun = addPun;
+exports.addPuns = addPuns;
 exports.removePun = removePun;

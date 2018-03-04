@@ -59,6 +59,9 @@ exports.default = function () {
             return [].concat(_toConsumableArray(state), [action.payload]);
             break;
 
+        case 'ADDED_PUNS':
+            return [].concat(_toConsumableArray(state)), action.payload;
+
         case 'REMOVED_PUN':
             return state.filter(function (pun) {
                 return state.indexOf(pun) !== state.indexOf(action.payload);

@@ -22,27 +22,27 @@ var firebase = _interopRequireWildcard(_app);
 
 require('firebase/database');
 
-var _Navigation = require('./components/Navigation/Navigation');
-
-var _Navigation2 = _interopRequireDefault(_Navigation);
-
 var _AsyncRoute = require('./components/AsyncRoute/AsyncRoute');
 
 var _AsyncRoute2 = _interopRequireDefault(_AsyncRoute);
 
+var _Home = require('./containers/Home/Home');
+
+var _Home2 = _interopRequireDefault(_Home);
+
 var _Loading = require('./components/Loading/Loading');
 
 var _Loading2 = _interopRequireDefault(_Loading);
+
+var _Navigation = require('./components/Navigation/Navigation');
+
+var _Navigation2 = _interopRequireDefault(_Navigation);
 
 var _reactRedux = require('react-redux');
 
 var _redux = require('redux');
 
 var _actions = require('./actions');
-
-var _Home = require('./containers/Home/Home');
-
-var _Home2 = _interopRequireDefault(_Home);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -86,10 +86,7 @@ var App = function (_React$Component) {
                     var puns = snap.val();
                     var pun = puns[Math.floor(Math.random() * puns.length)];
 
-                    puns.map(function (pun) {
-                        _this2.props.addPun(pun);
-                    });
-
+                    _this2.props.addPuns(puns);
                     _this2.props.selectPun(pun);
                 }).then(function () {
                     _this2.setState({
@@ -163,7 +160,7 @@ function mapStatesToProps(state) {
 
 function matchDispatchToProps(dispatch) {
     return (0, _redux.bindActionCreators)({
-        addPun: _actions.addPun,
+        addPuns: _actions.addPuns,
         selectPun: _actions.selectPun
     }, dispatch);
 }
