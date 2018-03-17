@@ -5,9 +5,12 @@ var styles = require('./Button.scss');
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ onClick, text }) => {
+const Button = ({ onClick, text, type }) => {
+	let buttonCls = 'button';
+	if (type) buttonCls += ` button--${type}`;
+
     return (
-        <button className='button' onClick={ onClick }>{ text }</button>
+        <button className={ buttonCls } onClick={ onClick }>{ text }</button>
     )
 }
 
