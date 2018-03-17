@@ -22,6 +22,14 @@ var _Button = require('../../components/Button/Button');
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _PunList = require('../../components/PunList/PunList');
+
+var _PunList2 = _interopRequireDefault(_PunList);
+
+var _Pun = require('../../components/Pun/Pun');
+
+var _Pun2 = _interopRequireDefault(_Pun);
+
 var _reactRedux = require('react-redux');
 
 var _redux = require('redux');
@@ -40,9 +48,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var styles = {
     'admin': 'Admin__admin___3PpTK',
+    'pun-list__item': 'Admin__pun-list__item___2TnIW',
+    'button': 'Admin__button___3jrHQ',
     'form': 'Admin__form___1GJ7H',
     'input': 'Admin__input___2CD05',
-    'input--error': 'Admin__input--error___1R8Zu'
+    'input--error': 'Admin__input--error___1R8Zu',
+    'input-joke': 'Admin__input-joke___2nSnB',
+    'input-punch-line': 'Admin__input-punch-line___2p9Tk'
 };
 
 var Admin = function (_React$Component) {
@@ -60,6 +72,8 @@ var Admin = function (_React$Component) {
 
         _this.handleLogIn = _this.handleLogIn.bind(_this);
         _this.handleLogOut = _this.handleLogOut.bind(_this);
+        _this.handleRemove = _this.handleRemove.bind(_this);
+        _this.handleAdd = _this.handleAdd.bind(_this);
         return _this;
     }
 
@@ -102,7 +116,7 @@ var Admin = function (_React$Component) {
                 document.getElementById('email').value = '';
                 document.getElementById('password').value = '';
 
-                _this2.props.userLogIn({ name: 'Stefan' });
+                _this2.props.userLogIn({ name: email });
             }).catch(function () {
                 document.getElementById('email').value = '';
                 document.getElementById('password').value = '';
@@ -121,15 +135,97 @@ var Admin = function (_React$Component) {
             });
         }
     }, {
+        key: 'renderLoggedIn',
+        value: function renderLoggedIn() {
+            var _this4 = this;
+
+            return _react2.default.createElement(
+                'ul',
+                { className: 'pun-list' },
+                _react2.default.createElement(
+                    'li',
+                    { className: 'pun-list__item' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'pun' },
+                        _react2.default.createElement('input', { type: 'text', className: 'joke input-joke', placeholder: 'Enter a joke' }),
+                        _react2.default.createElement('input', { type: 'text', className: 'punch-line input-punch-line', placeholder: 'Enter a punch line' })
+                    ),
+                    _react2.default.createElement(_Button2.default, { text: '+', onClick: function onClick() {
+                            return _this4.handleAdd();
+                        }, type: 'square' })
+                ),
+                this.props.puns.map(function (pun, index) {
+                    return _react2.default.createElement(
+                        'li',
+                        { className: 'pun-list__item', key: index },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'pun' },
+                            _react2.default.createElement(
+                                'p',
+                                { type: 'text', className: 'joke' },
+                                pun.joke
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                { type: 'text', className: 'punch-line' },
+                                pun.punchLine
+                            )
+                        ),
+                        _react2.default.createElement(_Button2.default, { text: '-', onClick: function onClick() {
+                                return _this4.handleRemove(pun);
+                            }, type: 'square' })
+                    );
+                })
+            );
+        }
+    }, {
+        key: 'handleRemove',
+        value: function handleRemove(pun) {
+            this.props.removePun(pun);
+        }
+    }, {
+        key: 'handleAdd',
+        value: function handleAdd() {
+            var _this5 = this;
+
+            var joke = document.getElementById('joke').value;
+            var punchLine = document.getElementById('punch-line').value;
+
+            if (!joke || !punchLine) return;
+
+            var pun = {
+                "joke": document.getElementById('joke').value,
+                "punchLine": document.getElementById('punch-line').value
+            };
+
+            var index = this.props.puns.length;
+
+            var db = firebase.database();
+            var dbRef = db.ref();
+            var punsRef = dbRef.child('puns');
+
+            punsRef.child(index).set(pun).then(function () {
+                _this5.props.addPun(pun);
+
+                document.getElementById('joke').value = '';
+                document.getElementById('punch-line').value = '';
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var adminLoggedIn = null;
             var adminLogin = null;
             var button = null;
 
             if (!this.props.user.isLoggedIn) {
+                adminLoggedIn = false;
                 adminLogin = this.renderLogIn();
                 button = _react2.default.createElement(_Button2.default, { text: 'Log in', onClick: this.handleLogIn });
             } else {
+                adminLoggedIn = this.renderLoggedIn();
                 adminLogin = null;
                 button = _react2.default.createElement(_Button2.default, { text: 'Log Out', onClick: this.handleLogOut });
             }
@@ -137,6 +233,7 @@ var Admin = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'admin' },
+                adminLoggedIn,
                 adminLogin,
                 button
             );
@@ -148,6 +245,7 @@ var Admin = function (_React$Component) {
 
 function mapStatesToProps(state) {
     return {
+        puns: state.puns,
         user: state.user
     };
 }
@@ -155,7 +253,9 @@ function mapStatesToProps(state) {
 function matchDispatchToProps(dispatch) {
     return (0, _redux.bindActionCreators)({
         userLogIn: _actions.userLogIn,
-        userLogOut: _actions.userLogOut
+        userLogOut: _actions.userLogOut,
+        addPun: _actions.addPun,
+        removePun: _actions.removePun
     }, dispatch);
 }
 
