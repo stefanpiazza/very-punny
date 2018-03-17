@@ -3,6 +3,9 @@
 }
 
 .pun-list__item {
+	position: relative;
+    text-align: left;
+	
     & + .pun-list__item {
         margin-top: 40px;
     }
