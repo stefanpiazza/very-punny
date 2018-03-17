@@ -24,27 +24,31 @@ const fileManifest = [
   },
   {
     "url": "/static/scripts/0.js",
-    "revision": "f0e352f1b5b33f17f26739cc854818a3"
+    "revision": "ec6e3d1d0cb5b628cb3f2d494b8cf503"
   },
   {
     "url": "/static/scripts/1.js",
-    "revision": "0e1ef0d5425f8bb6d002ba97e6657899"
+    "revision": "acc06e9eb421dba3e9ef86791ebdc83e"
   },
   {
     "url": "/static/scripts/2.js",
-    "revision": "922a9d4d66f23c9ad5f3aa9a927e9400"
+    "revision": "5e48ff117c834d5320343a04092762d6"
   },
   {
     "url": "/static/scripts/3.js",
-    "revision": "4cdec00b4088f90ba9493425f3555817"
+    "revision": "6d903255476f3a2ced115997f29b703a"
+  },
+  {
+    "url": "/static/scripts/4.js",
+    "revision": "8ca1f9aa69cab369cf138c3d4c049248"
   },
   {
     "url": "/static/scripts/app.js",
-    "revision": "c7af74424362dd3423163dec9af30bfd"
+    "revision": "54f75fd7d948e3f34e4ba59a960f118d"
   },
   {
     "url": "/static/scripts/common.js",
-    "revision": "6e97a82e9161dffb73eb4e53d6c7754a"
+    "revision": "292f5fcbf37e758e4dc188b224336747"
   },
   {
     "url": "/static/styles/app.css",
